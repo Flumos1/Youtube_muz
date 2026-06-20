@@ -54,5 +54,50 @@ Lay on A2/A3, base volume **−16 to −18 dB**. Crossfade = overlap clips ~2s, 
 - **Loudness Normalization ON** (~−14 LUFS for YouTube)
 - High-Quality Preview on while editing.
 
+## Ken Burns map (53 stills)
+
+Rule: **IN** = slow push 100→110% · **OUT** = pull 110→100% · **PAN** = ~108% scale + horizontal slide. Keep it slow and subtle. The 15 `.mp4` clips already move — leave them alone.
+
+| File | Move | | File | Move |
+|------|------|---|------|------|
+| 0000 | clip | | 0240 | IN |
+| 0005 | clip | | 0245 | IN |
+| 0010 | clip | | 0250 | OUT |
+| 0015 | clip | | 0255 | IN |
+| 0020 | clip | | 0300 | IN |
+| 0025 | clip | | 0305 | IN |
+| 0030 | clip | | 0310 | IN |
+| 0035 | clip | | 0315 | OUT |
+| 0040 | clip | | 0320 | IN |
+| 0045 | OUT | | 0325 | IN |
+| 0050 | IN | | 0330 | OUT |
+| 0055 | IN | | 0335 | PAN L→R |
+| 0100 | IN | | 0340 | IN |
+| 0105 | PAN R→L | | 0345 | IN |
+| 0110 | IN | | 0350 | IN |
+| 0115 | OUT | | 0355 | IN |
+| 0120 | clip | | 0400 | IN |
+| 0125 | OUT | | 0405 | OUT |
+| 0130 | IN | | 0410 | PAN R→L |
+| 0135 | IN | | 0415 | IN |
+| 0140 | IN | | 0420 | IN |
+| 0145 | OUT | | 0425 | IN |
+| 0150 | PAN L→R | | 0430 | IN |
+| 0155 | IN | | 0435 | clip |
+| 0200 | OUT | | 0440 | IN |
+| 0205 | PAN R→L | | 0445 | OUT |
+| 0210 | IN | | 0450 | IN |
+| 0215 | IN | | 0455 | clip |
+| 0220 | OUT | | 0500 | OUT |
+| 0225 | IN | | 0505 | clip |
+| 0230 | IN | | 0510 | IN |
+| 0235 | IN | | 0515 | clip |
+| | | | 0520 | PAN L→R |
+| | | | 0525 | IN |
+| | | | 0530 | OUT |
+| | | | 0535 | clip |
+
+Quick read: pushes (IN) dominate the intimate/tense beats; pulls (OUT) land on scale and loss (gold records 0045, crowd 0125, the rift 0145, dissolving couples 0250, empty room 0315, city 0500, final dawn 0530); pans carry movement (highway 0150, leaving 0205, bridge 0335, the wall scan 0520).
+
 ## After export
 Cut 2–3 Shorts: "velvet bag under the desk", "the song about the dog", "40 million from heartbreak".
