@@ -3,6 +3,7 @@ videos/
 audio/
 build/
 out/
+thumbnail/
 .env
 __pycache__/
 *.pyc
