@@ -1,4 +1,5 @@
 images/higgsfield_images/
+videos/
 __pycache__/
 *.pyc
 .DS_Store

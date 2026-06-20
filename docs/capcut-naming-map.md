@@ -129,3 +129,29 @@ The recorded voiceover came out **5:21**, faster than the script estimate. Real 
 | Bit 5 | 4:03–4:26 | Mick & Stevie affair |
 | Climax | 4:26–4:58 | 40 million copies |
 | Outro | 4:58–5:21 | Immortal + CTA |
+
+---
+
+## ANIMATED CLIPS (videos/ — Kling 3.0 image-to-video, 5s, silent)
+
+15 key frames animated. In CapCut, **replace the matching still with the .mp4** at that timecode; all other frames stay as stills with Ken Burns.
+
+| Clip | Res | Motion |
+|------|-----|--------|
+| videos/0000.mp4 | 1080p (pro) | Reel rotates, smoke drifts, lamp flickers — HERO opener |
+| videos/0005.mp4 | 720p | Subtle drift, smoke, silhouettes barely shift |
+| videos/0010.mp4 | 720p | Slow push-in to lone figure at board |
+| videos/0015.mp4 | 720p | Camera drift across live room, dust |
+| videos/0020.mp4 | 720p | Micro push-in on microphone, haze |
+| videos/0025.mp4 | 720p | Hand keeps writing on paper |
+| videos/0030.mp4 | 720p | VU meter needle trembles |
+| videos/0035.mp4 | 720p | Crowd sways, stage lights flare |
+| videos/0040.mp4 | 720p | Tour bus moves along night highway |
+| videos/0120.mp4 | 720p | Vinyl record spins |
+| videos/0435.mp4 | 720p | Two shadows drift closer — Mick & Stevie affair |
+| videos/0455.mp4 | 720p | Turntable spins, needle in groove |
+| videos/0505.mp4 | 720p | Camera drift through pressing plant |
+| videos/0515.mp4 | 1080p (pro) | Tape reel in golden light — HERO climax |
+| videos/0535.mp4 | 1080p (pro) | Reel's last rotation, lamp dims — HERO closer (mirrors 0000) |
+
+Source model: `kling3_0`, sound off, started from each frame's Higgsfield job_id. Cost ≈ 7.5 cr/clip (std), pro higher.
