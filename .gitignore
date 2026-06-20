@@ -1,6 +1,8 @@
 images/higgsfield_images/
 videos/
 audio/
+build/
+out/
 .env
 __pycache__/
 *.pyc
