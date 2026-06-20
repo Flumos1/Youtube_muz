@@ -84,23 +84,36 @@ At 7:00, bring this up to feature volume (−5 dB) for 13 seconds while voiceove
 
 ---
 
-## Cue Sheet (CapCut timecodes)
+## Cue Sheet — RECALCULATED for real 5:21 voiceover
 
 | Timecode | Track | Volume | Action |
 |----------|-------|--------|--------|
-| 0:00 | T1 | −18 dB | Fade in 1.5s |
-| 0:33 | T1 | — | HARD CUT (0.5s silence — intentional hook) |
-| 0:35 | T2 | −18 dB | Fade in 2s |
-| 1:50 | T3 | −18 dB | Crossfade 2.5s |
-| 3:30 | T1-build | −18→−13 dB | Crossfade 2s, volume creeps up to 5:10 |
-| 5:15 | T5 | −19 dB | Crossfade 2s |
-| 7:00 | T5 | −5 dB | FEATURE MOMENT — raise 1s, hold, voiceover silent |
-| 7:13 | T5 | −19 dB | Fade down 1.5s |
-| 7:30 | T1 | −17 dB | Reprise motif, crossfade 2s |
-| 8:15 | T4 | −15→−9 dB | Swell begins, peaks at 8:55 |
-| 9:10 | T1 | −15 dB | Final motif, fade out 4s to silence |
+| 0:00 | T1 | −18 dB | Fade in 1.5s, tension motif (Hook) |
+| ~0:33 | T1 | — | HARD CUT + 0.5s silence (end of open loop — intentional) |
+| 0:35 | T2 | −18 dB | Fade in 2s (Bit 1 — success) |
+| ~1:45 | T3 | −18 dB | Crossfade 2.5s (Bit 2 — breakups) |
+| ~2:50 | T1-build | −18→−14 dB | Crossfade 2s, tension rises (Bit 3 — Sausalito) |
+| 3:10 | T5 | −19 dB | Crossfade 2s, pastiche bed under Bit 4 (the songs) |
+| ~3:30 | T5 | −7 dB | OPTIONAL feature lift 6–8s between sentences, then back to −19 |
+| 4:03 | T1 | −17 dB | Crossfade 2s, tension reprise (Bit 5 — affair) |
+| 4:26 | T4 | −15→−9 dB | Bittersweet swell, peaks ~4:50 ("40 million") |
+| 4:58 | T1 | −15 dB → fade | Final motif, fade out 4s to silence (Outro) |
 
-**Key rule:** Only two moments where music peaks above bed level — 7:00 (T5 feature) and 8:55 (T4 climax). Everywhere else: background.
+**Key rule:** Music peaks above bed only twice — the optional T5 lift (~3:30) and the T4 climax swell (~4:50). Everywhere else it's a quiet bed under the voice.
+
+**Note on the feature moment:** the recorded VO is continuous (5:21), so there's no long silent gap for a 13s instrumental showcase. Use a short 6–8s T5 lift between sentences in Bit 4, or skip it and keep T5 as a bed.
+
+## Track lengths to generate in Suno
+
+| Track | Min length needed | Used at |
+|-------|-------------------|---------|
+| T1 (+ T1-build variant) | ~60s (reuse same motif 3×) | 0:00–0:35, 2:50–3:10, 4:03–4:26, 4:58–5:21 |
+| T2 Warm | ~70s | 0:35–1:45 |
+| T3 Melancholy | ~65s | 1:45–2:50 |
+| T5 Pastiche | ~55s | 3:10–4:03 |
+| T4 Bittersweet | ~35s | 4:26–4:58 |
+
+Suno clips run 2–4 min, so length is never the problem — generate, then trim to the window above.
 
 ---
 
