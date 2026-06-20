@@ -16,14 +16,21 @@ Faceless YouTube documentary channel about music history, artists, and cultural 
 - Python utilities: `scripts/`
 - Each image = exactly 5 seconds on the CapCut timeline
 
-## Current Asset Status (as of 2026-06-19)
-- ✓ 46 Higgsfield images downloaded → `images/higgsfield_images/0000.png … 0345.png`
-- ✓ CapCut naming map → `docs/capcut-naming-map.md`
+## Current Asset Status (as of 2026-06-20)
+- ✓ 68 Higgsfield images → `images/higgsfield_images/0000.png … 0535.png` (46 original 0:00–3:10 + 22 tail 3:10–5:21; 0140 & 0250 regenerated)
+- ✓ EN voiceover RECORDED → `G:\Ютуб 1.mp3` (ElevenLabs, runtime 5:21 — faster than script estimate)
+- ✓ EN voiceover script → `docs/Pilot_Fleetwood_Mac_Rumours_EN.md`
+- ✓ RU script → `docs/Pilot_Fleetwood_Mac_Rumours.md`
+- ✓ CapCut naming map (with real 5:21 timing) → `docs/capcut-naming-map.md`
+- ✓ Higgsfield tail prompt pack → `docs/higgsfield-prompts-tail.md`
 - ✓ Suno prompts (5 tracks) → `docs/suno-prompts.md`
 - ✓ CapCut assembly workflow → `docs/capcut-workflow.md`
 - ✓ Channel strategy → `docs/project-strategy.md`
-- ✗ EN voiceover script → `docs/Pilot_Fleetwood_Mac_Rumours_EN.md` — MISSING, needs restoration
-- ✗ RU script → `docs/Pilot_Fleetwood_Mac_Rumours.md` — MISSING, needs restoration
+- ☐ NEXT: generate 5 Suno tracks → assemble in CapCut → animate key frames → export
+
+## Real Audio Timing (VO = 5:21)
+Hook→Bit3: 0:00–3:10 · Bit4: 3:10–4:03 · Bit5: 4:03–4:26 · Climax: 4:26–4:58 · Outro: 4:58–5:21.
+Video length follows the 5:21 voiceover (not the original ~9:40 estimate).
 
 ## Higgsfield Image Generation
 - Model: Soul Location (cinematic scenes, environments)

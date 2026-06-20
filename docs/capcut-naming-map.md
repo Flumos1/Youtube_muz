@@ -58,20 +58,74 @@
 
 ---
 
+---
+
+## REAL AUDIO TIMING (ElevenLabs VO = 5:21 total)
+
+The recorded voiceover came out **5:21**, faster than the script estimate. Real section anchors (from the audio):
+
+| Section | Real timecode |
+|---------|--------------|
+| Hook → Bit 3 (Sausalito) | 0:00 → 3:10 |
+| Bit 4 (the songs / letters) | 3:10 → 4:03 |
+| Bit 5 (Mick & Stevie affair) | 4:03 → 4:26 |
+| Climax (40 million) | 4:26 → 4:58 |
+| Outro / CTA | 4:58 → 5:21 |
+
+**Placement rule:** Filenames keep sort order (MMSS grid). The 46 original frames (0000–0345) get compressed into **0:00–3:10**; the 22 tail frames (0350–0535) span **3:10–5:21**. In CapCut, place each frame inside its section window and match the spoken line — don't force a rigid 5s.
+
+---
+
+## TAIL FRAMES (0350–0535) — Bit 4 → Outro
+
+| File | ~Place at | Section | Scene |
+|------|-----------|---------|-------|
+| 0350.png | 3:10 | Bit 4 | Hand on tape reel, lyric sheet — "turned pain into songs" |
+| 0355.png | 3:17 | Bit 4 | Guitar-neck silhouette, backlit — "Go Your Own Way" |
+| 0400.png | 3:23 | Bit 4 | Female silhouette at mic, bowed — Stevie backing vocals |
+| 0405.png | 3:30 | Bit 4 | Red room + bed — "Dreams" / Sly Stone's studio |
+| 0410.png | 3:37 | Bit 4 | Calm vs tense split by doorway — quiet revenge vs rage |
+| 0415.png | 3:43 | Bit 4 | Two figures, red stage light — "You Make Loving Fun" affair |
+| 0420.png | 3:50 | Bit 4 | Bassist's hands on strings — John playing bass |
+| 0425.png | 3:56 | Bit 4 | Dog in pool of light — "the song was about her dog" |
+| 0430.png | 4:03 | Bit 5 | Bare bulb, cracked wall — "couldn't get worse" |
+| 0435.png | 4:09 | Bit 5 | Two shadows merging on wall — Mick & Stevie secret affair |
+| 0440.png | 4:15 | Bit 5 | Cracked wooden beam — "last support beam, one more crack" |
+| 0445.png | 4:20 | Bit 5 | Scattered dim studio — "nobody knew who was with whom" |
+| 0450.png | 4:26 | Climax | Vinyl sliding from plain sleeve — Feb 4 1977 release |
+| 0455.png | 4:31 | Climax | Turntable, needle dropping — "they called it Rumours" |
+| 0500.png | 4:37 | Climax | City night, lit windows — "world heard their breakups" |
+| 0505.png | 4:42 | Climax | Pressing plant, record stacks — "forty million copies" |
+| 0510.png | 4:47 | Climax | Award statuette silhouette — "Album of the Year" |
+| 0515.png | 4:52 | Climax | Tape reel in golden light — "bought it 40 million times" |
+| 0520.png | 4:58 | Outro | Gold records wall, one empty — "made them immortal" |
+| 0525.png | 5:05 | Outro | Wilting rose by lamp — "the wounds were real" |
+| 0530.png | 5:11 | Outro | Dawn through studio window — "born when life falls apart" |
+| 0535.png | 5:16 | Outro | Dying lamp + console — CTA, mirrors opening 0000 (ring closes) |
+
+**Replaced frames:** 0140 (was glitch crack → now two silhouettes back-to-back) and 0250 (was broken glass/faces → now three pairs dissolving in smoke).
+
+---
+
 ## CapCut Import Checklist
 
-1. Sort files by name (MMSS = alphabetical = chronological order)
-2. Select all 46 → drag to timeline
-3. Set each clip duration to **5.0 seconds** exactly
-4. Images cover 0:00 → 3:50
-5. Remaining runtime (3:50 → 9:40): loop last frame or add B-roll / black
+1. Sort files by name (MMSS = alphabetical = chronological order) — all 68 frames
+2. Select all → drag to timeline
+3. Original 46 (0000–0345) → spread across **0:00–3:10** (~4s each); tail 22 (0350–0535) → **3:10–5:21** (~6s each)
+4. Fine-tune each frame's position to match its spoken line (see tables above)
+5. Video length follows the 5:21 voiceover — no extra runtime to fill
+6. Apply slow Ken Burns (pan/zoom) to every still
 
-## Narrative Block Summary
+## Narrative Block Summary (real audio)
 
-| Block | Timecodes | Duration | Content |
-|-------|-----------|----------|---------|
-| Hook | 0:00–0:20 | 20s | Studio + broken relationships established |
-| Open Loop | 0:20–0:35 | 15s | The impossible premise — sing about each other |
-| Bit 1 | 0:35–1:50 | 75s | Success, fame, the perfect picture |
-| Bit 2 | 1:50–2:55 | 65s | All three relationships collapse |
-| Bit 3 | 3:00–3:50 | 50s | Back to the studio, recording through the wreckage |
+| Block | Real timecode | Content |
+|-------|---------------|---------|
+| Hook | 0:00–0:18 | Studio + broken relationships established |
+| Open Loop | 0:18–0:35 | The impossible premise — sing about each other |
+| Bit 1 | 0:35–~1:45 | Success, fame, the perfect picture |
+| Bit 2 | ~1:45–~2:50 | All three relationships collapse |
+| Bit 3 | ~2:50–3:10 | Back to the studio (Sausalito pressure cooker) |
+| Bit 4 | 3:10–4:03 | The songs / letters (loop payoff) |
+| Bit 5 | 4:03–4:26 | Mick & Stevie affair |
+| Climax | 4:26–4:58 | 40 million copies |
+| Outro | 4:58–5:21 | Immortal + CTA |
