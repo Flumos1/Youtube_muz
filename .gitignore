@@ -4,6 +4,7 @@ audio/
 build/
 out/
 thumbnail/
+branding/
 .env
 __pycache__/
 *.pyc
