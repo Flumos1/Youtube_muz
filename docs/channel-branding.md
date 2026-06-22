@@ -29,5 +29,16 @@ music history, classic rock, rock music, music documentary, album story, music f
 - Create a **Playlist**: "Music's Darkest Stories" and add the pilot.
 - As videos grow, feature the best performer as the trailer.
 
+## Channel trailer — `out/flumos_trailer.mp4` (34s, 1080p)
+A no-voiceover montage (best clips/stills + text cards + music) ending on the logo card and a Subscribe CTA. Built by `scripts/assemble_trailer.ps1`.
+
+**What to do with it:**
+1. Upload it as a normal video (can be **Unlisted** so it doesn't clutter the feed).
+2. YouTube Studio → **Customize channel → Layout → Video spotlight → "Channel trailer for people who haven't subscribed"** → pick this video.
+3. (Optional) also set a "Featured video for returning subscribers" = the Fleetwood Mac episode.
+4. The trailer auto-plays on your channel homepage for non-subscribers — it's the 5-second pitch that converts visitors into subscribers.
+
+To tweak wording/length, edit the `$segs` text in `scripts/assemble_trailer.ps1` and re-run.
+
 ## Note
 `branding/` is gitignored (binary assets). Regenerate banner/avatar text via ffmpeg `drawtext` if you want to tweak wording.
