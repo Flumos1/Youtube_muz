@@ -10,23 +10,40 @@ Faceless YouTube documentary channel about music history, artists, and cultural 
 - **Music**: Generate in Suno as *style of era* — never name a real artist in the prompt
 - **Visuals**: AI-generated scenes of studios/crowds/instruments, NOT real archival footage
 
-## File Conventions
-- Images: `images/higgsfield_images/MMSS.png` — filename = CapCut start timecode
-- Scripts / docs: `docs/`
-- Python utilities: `scripts/`
-- Each image = exactly 5 seconds on the CapCut timeline
+## Folder Structure (per-episode, organized 2026-06-23)
+Each episode's assets live in its own top-level folder `Эпизод N/`:
+- `Эпизод N/docs/` — scripts, prompts, maps, publish pack
+- `Эпизод N/images/higgsfield_images/MMSS.png` — filename = timecode (gitignored)
+- `Эпизод N/audio/` — Suno tracks · `Эпизод N/videos/` — Kling clips · `Эпизод N/out/` — finals + shorts · `Эпизод N/thumbnail/` · `Эпизод N/build/` (all gitignored)
 
-## Current Asset Status (as of 2026-06-20)
-- ✓ 68 Higgsfield images → `images/higgsfield_images/0000.png … 0535.png` (46 original 0:00–3:10 + 22 tail 3:10–5:21; 0140 & 0250 regenerated)
-- ✓ EN voiceover RECORDED → `G:\Ютуб 1.mp3` (ElevenLabs, runtime 5:21 — faster than script estimate)
-- ✓ EN voiceover script → `docs/Pilot_Fleetwood_Mac_Rumours_EN.md`
-- ✓ RU script → `docs/Pilot_Fleetwood_Mac_Rumours.md`
-- ✓ CapCut naming map (with real 5:21 timing) → `docs/capcut-naming-map.md`
-- ✓ Higgsfield tail prompt pack → `docs/higgsfield-prompts-tail.md`
-- ✓ Suno prompts (5 tracks) → `docs/suno-prompts.md`
-- ✓ CapCut assembly workflow → `docs/capcut-workflow.md`
-- ✓ Channel strategy → `docs/project-strategy.md`
-- ☐ NEXT: generate 5 Suno tracks → assemble in CapCut → animate key frames → export
+**Channel-level (stays in ROOT, shared across all episodes):**
+- `branding/` — channel avatar, banner, logo, watermark (gitignored)
+- `scripts/` — assembly engine (assemble_*.ps1, generate_suno.ps1); paths reference Ep1 root layout — parametrize per episode when reusing
+- `docs/project-strategy.md`, `docs/channel-branding.md` — channel-wide
+- `CLAUDE.md`, `README.md`
+
+**Episode 1** = Fleetwood Mac (`Эпизод 1/`) · **Episode 2** = Pink Floyd The Wall (`Эпизод 2/`)
+- Image convention: MMSS.png = timecode; each image = 5s slot
+
+## Pilot Status (PUBLISHED — 2026-06-23)
+- ✓ Main video `L-6A7jFUegY` → Public. Channel: Flumos / 1 subscriber
+- ✓ Short 1 `DEMp1Rw5I5A` "She said the song was about her dog" → Public (~4 views)
+- ✓ Short 2 `QBdQUtxlGI8` "They made an album about love while..." → Public (~100 views — best performer)
+- ✓ Short 3 `FOq1P5qFWCY` "They sold their own divorce 40 million times" → Scheduled 11:00 2026-06-23
+- ✓ Engagement comment posted on main video
+- ✓ Episode 2 chosen: **Pink Floyd The Wall**. Script LOCKED → `Эпизод 2/docs/Ep2_Pink_Floyd_The_Wall_EN.md` (~9–10 min)
+- ☐ NEXT (Ep2): user records EN VO → extract real timecodes → Higgsfield shots → Kling → Suno → assemble. Workflow = VO-FIRST (see memory).
+
+## YouTube Studio Browser Automation (Chrome MCP)
+- Allowed domain: `studio.youtube.com` ONLY — `www.youtube.com` is BLOCKED by extension
+- **Always first call**: `tabs_context_mcp{createIfEmpty:true}` — tab IDs expire between sessions
+- **After any click**: screenshot in a SEPARATE call (CDP timeout if batched with click)
+- **Date picker**: defaults to TOMORROW — must explicitly click today's date
+- **Shorts tab URL**: `/videos/short` (not `/shorts`)
+- **Comments**: CANNOT post from Studio — clicking the field navigates to youtube.com → tab freezes. User must post manually on youtube.com
+- **CORS**: fetch() from studio.youtube.com → youtube.com times out/blocked — don't attempt
+- **Nexlev MCP**: requires paid plan — unusable on free tier
+- **ToolSearch**: load multiple schemas in one call: `select:tool1,tool2,tool3`
 
 ## Real Audio Timing (VO = 5:21)
 Hook→Bit3: 0:00–3:10 · Bit4: 3:10–4:03 · Bit5: 4:03–4:26 · Climax: 4:26–4:58 · Outro: 4:58–5:21.

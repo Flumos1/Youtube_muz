@@ -1,4 +1,6 @@
-images/higgsfield_images/
+# media folders — ignored at any depth (root or inside Эпизод N/)
+higgsfield_images/
+images/
 videos/
 audio/
 build/

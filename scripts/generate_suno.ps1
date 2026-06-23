@@ -13,6 +13,7 @@ param(
   [Parameter(Mandatory=$true)][string]$Prompt,
   [Parameter(Mandatory=$true)][string]$Out,
   [string]$Mv = "chirp-v5",
+  [string]$AudioDir = "G:\Claude Youtube Muz\audio",
   [switch]$Vocals
 )
 $ErrorActionPreference = "Stop"
@@ -42,7 +43,7 @@ if (-not $jobId) { throw "No job_id in response: $($submit | ConvertTo-Json -Dep
 Write-Host "job_id: $jobId"
 
 # --- poll ---
-$audioDir = "G:\Claude Youtube Muz\audio"
+$audioDir = $AudioDir
 New-Item -ItemType Directory -Force $audioDir | Out-Null
 $deadline = (Get-Date).AddMinutes(6)
 while ((Get-Date) -lt $deadline) {
