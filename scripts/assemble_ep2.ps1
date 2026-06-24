@@ -33,7 +33,7 @@ Get-ChildItem "$SEG\*.mp4" -ErrorAction SilentlyContinue | Remove-Item -Force
 $VO_END = 716.12
 
 # Frames that have animation clips (MMSS names)
-$clips = @("0024","0157","0245","0421","0514","0720","0942","1036","1116")
+$clips = @("0000","0008","0016","0024","0032","0157","0245","0421","0514","0720","0942","1036","1116")
 
 # Ken Burns cycle: IN zoom-in, OUT zoom-out, PANR pan right, PANL pan left
 $kbCycle = @("IN","OUT","IN","PANR","IN","OUT","IN","PANL","OUT","IN","OUT","IN")
