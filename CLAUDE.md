@@ -40,7 +40,7 @@ Each episode's assets live in its own top-level folder `Эпизод N/`:
 Open the full ordered subplan: **`docs/growth-playbook.md` → "EXECUTION SUBPLAN — NEXT SESSION, START HERE"**.
 - Already done 2026-06-25: CTA overlay in `create_shorts.ps1` ✅ · channel keywords 8→13 ✅ · series-branded Shorts template ✅
 - Tomorrow's first move: **STEP 1 (pull analytics)** if the analytics MCP is up, else **STEP 2 (Ep4 climax subscribe-ask)** — works on any machine.
-- ⚠️ This repo has **no git remote** — it only reaches another computer if the project folder itself is synced. Memory under `~/.claude/` does NOT travel between machines; the repo files (this one + growth-playbook) are the source of truth.
+- 🔄 Synced to GitHub: **`https://github.com/Flumos1/Youtube_muz`** (origin/master). On another machine: `git clone` / `git pull` to get the latest. Memory under `~/.claude/` does NOT travel between machines — the **repo files** (this CLAUDE.md + growth-playbook) are the cross-machine source of truth. Commit + push after meaningful work so the other computer stays in sync.
 - Carryover: bind "Видео по теме" in 3 Ep3 Shorts → long `6Q0QNLyHBvM` once it's public.
 
 **Episode backlog (Ep4+)**: Ep4 = Napster (chosen). Then choose from Next Episode Ideas below.
