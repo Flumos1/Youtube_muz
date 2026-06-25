@@ -35,7 +35,15 @@ Each episode's assets live in its own top-level folder `Эпизод N/`:
 - All "Видео по теме" → `rmIUQdDgztY` ✅
 - Phone verified ✅ · All channel features unlocked ✅
 
-**NEXT**: Ep3 — choose from Next Episode Ideas below
+## ▶ NEXT SESSION — START HERE (set 2026-06-25)
+**Subscriber-growth push is the active priority** (3 subs at 4,717 views = 0.04% conversion).
+Open the full ordered subplan: **`docs/growth-playbook.md` → "EXECUTION SUBPLAN — NEXT SESSION, START HERE"**.
+- Already done 2026-06-25: CTA overlay in `create_shorts.ps1` ✅ · channel keywords 8→13 ✅ · series-branded Shorts template ✅
+- Tomorrow's first move: **STEP 1 (pull analytics)** if the analytics MCP is up, else **STEP 2 (Ep4 climax subscribe-ask)** — works on any machine.
+- ⚠️ This repo has **no git remote** — it only reaches another computer if the project folder itself is synced. Memory under `~/.claude/` does NOT travel between machines; the repo files (this one + growth-playbook) are the source of truth.
+- Carryover: bind "Видео по теме" in 3 Ep3 Shorts → long `6Q0QNLyHBvM` once it's public.
+
+**Episode backlog (Ep4+)**: Ep4 = Napster (chosen). Then choose from Next Episode Ideas below.
 
 ## YouTube Studio Browser Automation (Chrome MCP)
 - Allowed domain: `studio.youtube.com` ONLY — `www.youtube.com` is BLOCKED by extension
@@ -78,12 +86,36 @@ document.dispatchEvent(new KeyboardEvent('keydown', {key:'Escape', bubbles:true}
 6. End screens → import from previous video (Подписка + Лучшее видео)
 7. Subtitles → upload TXT "Без временных кодов" (YouTube auto-syncs timing)
 8. Publish PUBLIC
-9. Shorts: ffmpeg crop → upload 3 one by one → set "Видео по теме" for each
+9. **⚠️ Language check (MANDATORY)** → /translations tab → confirm "Английский (Соединённые Штаты) (язык видео)" appears. If Ukrainian shows as default language → RE-UPLOAD immediately (Ep1 lesson: UA metadata = 0 search views)
+10. Shorts: ffmpeg crop → upload 3 one by one → set "Видео по теме" + description for each
+
+### Language Metadata — Critical Rule
+**Ep1 lesson:** YouTube RSS sync set defaultLanguage=uk → video invisible to English audience in search/suggested → 0 views on long video despite 3000+ Short views.
+- After EVERY upload: go to `/translations` tab and verify the language shows **"Английский (Соединённые Штаты) (язык видео)"**
+- If it shows Ukrainian as the video language → re-upload. There is no fix in Studio UI.
+- Ep2 verified English ✅ · Ep1 re-uploaded to fix ✅
+
+### Shorts — Required Description Template
+Series-branded template (Ep4+). For Ep1/Ep2 the older minimal form is fine.
+```
+🎬 Music's Darkest Stories — Short #N
+Full story → https://youtu.be/VIDEO_ID
+
+🔔 Subscribe — a new music story every week.
+
+#Tag1 #Tag2 #Tag3 #Tag4 #Shorts
+```
+And "Видео по теме" set to the corresponding long video immediately after upload.
+
+**CTA overlay (auto):** `create_shorts.ps1` burns "SUBSCRIBE / for the full story" into the last
+3s of every Short (ON by default; `-NoCTA` to skip). The #1 subscriber-conversion lever — see
+`docs/growth-playbook.md`. Do NOT re-cut Ep3 Shorts (already uploaded with view momentum).
 
 ### "Видео по теме" in Shorts
 - Phone verification required — **already done on this channel** ✅
 - Set via Studio: video edit page → right panel → "Видео по теме" → Нет → pick video
 - Can be set for all Shorts in one session without phone again
+- **All Ep1 & Ep2 Shorts confirmed set ✅ (verified 2026-06-25)**
 
 ## Shorts Creation (ffmpeg — proven command)
 ```powershell
