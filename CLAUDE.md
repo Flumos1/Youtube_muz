@@ -35,13 +35,26 @@ Each episode's assets live in its own top-level folder `Эпизод N/`:
 - All "Видео по теме" → `rmIUQdDgztY` ✅
 - Phone verified ✅ · All channel features unlocked ✅
 
-## ▶ NEXT SESSION — START HERE (set 2026-06-25)
-**Subscriber-growth push is the active priority** (3 subs at 4,717 views = 0.04% conversion).
-Open the full ordered subplan: **`docs/growth-playbook.md` → "EXECUTION SUBPLAN — NEXT SESSION, START HERE"**.
-- Already done 2026-06-25: CTA overlay in `create_shorts.ps1` ✅ · channel keywords 8→13 ✅ · series-branded Shorts template ✅
-- Tomorrow's first move: **STEP 1 (pull analytics)** if the analytics MCP is up, else **STEP 2 (Ep4 climax subscribe-ask)** — works on any machine.
-- 🔄 Synced to GitHub: **`https://github.com/Flumos1/Youtube_muz`** (origin/master). On another machine: `git clone` / `git pull` to get the latest. Memory under `~/.claude/` does NOT travel between machines — the **repo files** (this CLAUDE.md + growth-playbook) are the cross-machine source of truth. Commit + push after meaningful work so the other computer stays in sync.
-- Carryover: bind "Видео по теме" in 3 Ep3 Shorts → long `6Q0QNLyHBvM` once it's public.
+## ▶ NEXT SESSION — START HERE (set 2026-06-25, updated 2026-06-25 evening)
+**FIRST MOVE: Write Ep4 Napster script** — research done, angle locked (see below).
+
+### Ep4 Napster — vidIQ research DONE (2026-06-25)
+- Keyword "napster": score 63 (High), volume 18 459, competition **37.7 (LOW)** ← good
+- Trend ↓↓ Falling (historical topic) — offset with Metallica angle (evergreen conflict)
+- Top competitor: "Napster vs. Metallica: The $20 BILLION War That Changed..." — The Big Flop
+  (22K subs, 28K views, 7.2x outlier) — the only real documentary rival
+- **Shorts gap: ZERO Shorts about Napster history** — first mover opportunity
+- **Locked angle**: financial stakes + Metallica conflict = proven frame
+- **Title candidates:**
+  - "Metallica Sued Napster for $20 Billion — and Accidentally Killed the Music Industry"
+  - "Two College Kids Built Napster in 60 Days — Then Metallica Destroyed Them"
+- **Tags to include**: napster, napster metallica, music piracy history, file sharing revolution, lars ulrich napster, music industry history
+
+### Growth subplan status (2026-06-25)
+Already done: CTA overlay `create_shorts.ps1` ✅ · channel keywords 8→13 ✅ · Ep3 Shorts "Видео по теме" all set ✅
+Still pending: Studio quick wins (watermark, subscribe link) — needs Chrome extension.
+
+- 🔄 Synced to GitHub: **`https://github.com/Flumos1/Youtube_muz`** (origin/master). On another machine: `git clone` / `git pull`.
 
 **Episode backlog (Ep4+)**: Ep4 = Napster (chosen). Then choose from Next Episode Ideas below.
 
