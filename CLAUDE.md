@@ -25,7 +25,7 @@ Each episode's assets live in its own top-level folder `Эпизод N/`:
 **Episode 1** = Fleetwood Mac (`Эпизод 1/`) · **Episode 2** = Pink Floyd The Wall (`Эпизод 2/`)
 - Image convention: MMSS.png = timecode; each image = 5s slot
 
-## Channel Status (2026-06-24)
+## Channel Status (2026-06-26)
 **Ep1 — Fleetwood Mac Rumours** (reupload 2026-06-24, `TCrq1Xa3_Pg`)
 - Shorts: `DEMp1Rw5I5A` · `QBdQUtxlGI8` (~1.6K views best) · `FOq1P5qFWCY`
 - All "Видео по теме" → `TCrq1Xa3_Pg` ✅
@@ -35,15 +35,23 @@ Each episode's assets live in its own top-level folder `Эпизод N/`:
 - All "Видео по теме" → `rmIUQdDgztY` ✅
 - Phone verified ✅ · All channel features unlocked ✅
 
+**Ep4 — Napster** (2026-06-26, `sUzpQCJhziQ`, 10:47)
+- Short #1 `OUnxWwYZoZw` "The Day Music Industry Nearly Died" ✅ — "Видео по теме" → `sUzpQCJhziQ` ✅
+- Short #2 `IoLDVLCT_TA` "Metallica Showed Up With 317,000 Names" ✅ — "Видео по теме" → `sUzpQCJhziQ` ✅
+- Short #3 `5ibSBt5u5ak` "Who Really Won the $40 Billion War?" ✅ — "Видео по теме" → `sUzpQCJhziQ` ✅
+- All Shorts "Видео по теме" → `sUzpQCJhziQ` ✅
+- ⚠️ AI disclosure — set after video finishes processing (not visible during SD processing)
+- ⚠️ Thumbnail — upload via Значок → Загрузить файл after processing completes
+
 ## ▶ NEXT SESSION — START HERE (updated 2026-06-26)
-**Ep4 Napster — ALL ASSETS DONE. Next move: ASSEMBLE + PUBLISH.**
-- ✅ Script `Эпизод 4/docs/Ep4_script_EN.md` (subscribe-ask at climax) · ✅ VO `audio/Ep4_VO_full.mp3` (10:45,
-  Adam Deep English Story Voice) · ✅ 5 Suno tracks `audio/Ep4_T1..T5.mp3` · ✅ 71 images
-  `images/higgsfield_images/MMSS.png` · ✅ 16 Kling clips `videos/MMSS.mp4` (1080p).
-- ▶ RUN: `pwsh scripts/assemble_ep4.ps1` → `build/ep4_video.mp4` → audio mux → `out/ep4_final.mp4`
-  (see `Эпизод 4/docs/Ep4_kling_animation_plan.md` for the assembly checklist + cue sheet).
-- Then publish (workflow below) + `scripts/create_shorts.ps1 -Episode 4` (cuts already defined).
-- Ep4 Higgsfield credits left ≈ 206 (starter). Title/tags candidates in the Ep4 research block below.
+**Ep4 PUBLISHED. Remaining tasks:**
+- ✅ Short #2 `IoLDVLCT_TA` published, "Видео по теме" set
+- ✅ Short #3 `5ibSBt5u5ak` published, "Видео по теме" set
+- All 3 Shorts DONE ✅
+- After Ep4 video processing completes: set AI disclosure (Сведения → scroll down → Использование ИИ → Да)
+- Create thumbnail for Ep4 and upload via video edit page → Значок → Загрузить файл
+- Choose Ep5 topic from backlog
+- Ep4 Higgsfield credits left ≈ 206 (starter).
 
 ## ⚙ Self-Generation Pipeline (MCP) — proven on Ep4, USE THIS
 I do the whole pipeline myself; don't hand steps back to the user unless genuinely unsure (then ask one
