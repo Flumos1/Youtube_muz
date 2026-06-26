@@ -24,6 +24,16 @@
 | 15 | 1016 | 8469f117-6880-4e5d-a6bb-5e3c1891b641 | S3 | slow push across boardroom, chart glows, city beyond |
 | 16 | 1044 | d080ac01-6f7c-470a-8be4-45c78811c57f | — | dawn light creeps in, power LED blinks, dust motes |
 
-**Status (2026-06-26):** 71 images generated (Soul Location, cinematic) + named by timecode in
-`images/higgsfield_images/`. Test clip 0000 submitted (job 45825143). Remaining 15 to generate.
-4-concurrent limit → fire in waves of 4. Cost ≈ 10 cr/clip × 16 = ~160 cr.
+**Status (2026-06-26): ✅ COMPLETE.** All 16 clips generated (kling3_0_turbo, 1080p, 5s) and
+downloaded to `videos/MMSS.mp4`. 71 images in `images/higgsfield_images/MMSS.png`. Verified:
+server-room push-in, Metallica box push, Spotify-climax profile reveal all clean & cinematic.
+Spend: ~168 cr (71 imgs ≈ 3 cr + 16 clips ≈ 165 cr); 206 cr left.
+**Note:** Kling clips carry native audio — mute/replace in CapCut (music = Suno T1–T5).
+
+## NEXT: CapCut assembly
+1. Import VO `audio/Ep4_VO_full.mp3` (10:45) on track 2 (reference).
+2. Place 71 images on track 1 at their MMSS timecodes, ~8s each; Ken Burns (slow zoom/pan) on stills.
+3. Drop the 16 MMSS.mp4 clips over their matching stills (mute their audio).
+4. Music T1–T5 on tracks 3–4 per `Ep4_suno_prompts.md` cue sheet (T5 +-5dB at 3:43, T4 -10dB at 9:38).
+5. Export 1080p, Loudness Normalization ON → `out/ep4_final.mp4`.
+6. Shorts: `scripts/create_shorts.ps1 -Episode 4` (cuts already defined).
