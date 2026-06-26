@@ -1,0 +1,85 @@
+The labels panicked. But not in the way you might expect.
+
+Their first instinct wasn't to adapt. It was to call their lawyers.
+
+<break time="0.5s" />
+
+The Recording Industry Association of America filed suit against Napster in December 1999. But the lawsuit that changed everything came from somewhere else.
+
+Metallica.
+
+<break time="0.6s" />
+
+In April 2000, Lars Ulrich showed up at Napster's offices with thirteen boxes. Inside were the names of 317,000 Napster users who had shared Metallica songs. He demanded they all be banned.
+
+A demo of their song had leaked onto Napster before it was officially released. Radio stations were playing it. Metallica hadn't authorized any of it.
+
+<break time="0.5s" />
+
+The backlash was immediate and brutal. Metallica — who had built their career partly on fans trading bootleg tapes — were now suing their own audience. They became the most hated band in rock overnight. Lars Ulrich was mocked in every magazine, every forum, every late-night show.
+
+<break time="0.5s" />
+
+But Metallica weren't wrong about the principle. The music was theirs. They hadn't been asked. They hadn't been paid.
+
+The problem was the optics. And the timing. And the fact that seventy million people felt the other way.
+
+<break time="0.6s" />
+
+Meanwhile, inside the labels, a different conversation was happening — one that nobody wanted to have publicly.
+
+Napster had approached the major labels in 1999. They'd offered to license the technology, share revenue, make it legal. The labels had a chance to own the future of music distribution.
+
+They said no. They wanted Napster dead.
+
+<break time="1.0s" />
+
+In February 2001, the Ninth Circuit Court of Appeals ruled against Napster.
+
+The logic was clear: Napster knew its users were sharing copyrighted music and did nothing to stop it. That made them liable.
+
+<break time="0.5s" />
+
+They were ordered to block all copyrighted material from their network.
+
+Napster tried. They built filters. They tried to comply. But the filters were leaky — users found workarounds almost immediately. The court ruled the filters weren't good enough.
+
+<break time="0.5s" />
+
+In July 2001, Napster went dark.
+
+Seventy million users suddenly had nowhere to go.
+
+<break time="0.8s" />
+
+And here is where the industry made its fatal error.
+
+They assumed that if Napster was gone, people would go back to buying CDs.
+
+<break time="0.6s" />
+
+They didn't.
+
+<break time="0.8s" />
+
+Within months, Kazaa appeared. Then LimeWire. Then BitTorrent — a technology so decentralized it was almost impossible to shut down. The Napster shutdown didn't end piracy. It taught seventy million people that piracy was possible, then scattered them across a dozen networks that were harder to fight.
+
+<break time="0.5s" />
+
+CD sales, which had peaked in 2000, began a collapse that would last fifteen years. By 2010, album sales had fallen sixty percent. The industry had spent millions on lawyers and won a court case — and lost the war completely.
+
+<break time="1.2s" />
+
+There's a document from 2000 that almost nobody talks about.
+
+It's a memo from inside one of the major labels. The writer — an executive — argues that the labels should buy Napster. The price being discussed was two billion dollars.
+
+<break time="0.6s" />
+
+The memo was ignored.
+
+<break time="0.8s" />
+
+Two billion dollars. For the future of the entire music industry.
+
+They said no.

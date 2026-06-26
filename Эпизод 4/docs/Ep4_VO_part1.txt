@@ -1,0 +1,47 @@
+In 1999, a nineteen-year-old college dropout built something in sixty days that terrified an entire industry worth tens of billions of dollars.
+
+He didn't steal anything. He didn't break in anywhere. He just wrote code.
+
+<break time="0.6s" />
+
+Within eighteen months, seventy million people were using it. The music industry called it piracy. A federal judge shut it down.
+
+And then something strange happened.
+
+<break time="0.8s" />
+
+Killing it made everything worse.
+
+<break time="1.0s" />
+
+This is the story of Napster — the software that shouldn't have worked, built by a kid who couldn't sleep, that rewrote the rules of music, money, and power in ways the industry still hasn't recovered from.
+
+By the end of this, you'll understand why the biggest mistake in music history wasn't piracy. It was the response to it.
+
+<break time="1.0s" />
+
+Shawn Fanning was eighteen years old and couldn't sleep.
+
+It was 1998. His roommate at Northeastern University kept complaining about something: finding good MP3s online was too hard. You had to know the right websites. The links broke constantly. It was a mess.
+
+<break time="0.5s" />
+
+Fanning had an idea. What if instead of storing music on one server — which could be shut down — you let everyone share directly with each other? No central file. No single point of attack. Just millions of computers connected, offering what they had.
+
+He called it Napster. His online handle was Napster — a nickname for his hair.
+
+<break time="0.5s" />
+
+He coded it in sixty days, barely sleeping. When he finally released it, he expected a few hundred people to try it.
+
+Within a year, the number was seventy million.
+
+<break time="0.6s" />
+
+To understand what that meant in 1999 — the entire population of France, downloading and sharing music for free, simultaneously. Songs that cost fifteen dollars on a CD were suddenly available in three minutes. Every album. Every artist. Every song ever recorded.
+
+<break time="0.5s" />
+
+The music industry had just come off its most profitable decade in history. CD sales had exploded through the nineties. Labels were making money at a rate that had never existed before.
+
+And then a teenager in a dorm room switched the lights off.
