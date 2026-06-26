@@ -35,10 +35,37 @@ Each episode's assets live in its own top-level folder `Эпизод N/`:
 - All "Видео по теме" → `rmIUQdDgztY` ✅
 - Phone verified ✅ · All channel features unlocked ✅
 
-## ▶ NEXT SESSION — START HERE (set 2026-06-25, updated 2026-06-25 evening)
-**FIRST MOVE: Write Ep4 Napster script** — research done, angle locked (see below).
+## ▶ NEXT SESSION — START HERE (updated 2026-06-26)
+**Ep4 Napster — ALL ASSETS DONE. Next move: ASSEMBLE + PUBLISH.**
+- ✅ Script `Эпизод 4/docs/Ep4_script_EN.md` (subscribe-ask at climax) · ✅ VO `audio/Ep4_VO_full.mp3` (10:45,
+  Adam Deep English Story Voice) · ✅ 5 Suno tracks `audio/Ep4_T1..T5.mp3` · ✅ 71 images
+  `images/higgsfield_images/MMSS.png` · ✅ 16 Kling clips `videos/MMSS.mp4` (1080p).
+- ▶ RUN: `pwsh scripts/assemble_ep4.ps1` → `build/ep4_video.mp4` → audio mux → `out/ep4_final.mp4`
+  (see `Эпизод 4/docs/Ep4_kling_animation_plan.md` for the assembly checklist + cue sheet).
+- Then publish (workflow below) + `scripts/create_shorts.ps1 -Episode 4` (cuts already defined).
+- Ep4 Higgsfield credits left ≈ 206 (starter). Title/tags candidates in the Ep4 research block below.
 
-### Ep4 Napster — vidIQ research DONE (2026-06-25)
+## ⚙ Self-Generation Pipeline (MCP) — proven on Ep4, USE THIS
+I do the whole pipeline myself; don't hand steps back to the user unless genuinely unsure (then ask one
+question first). Token economy matters — avoid redundant polls and huge tool dumps.
+- **Music:** `scripts/generate_suno.ps1` (Suno/TTAPI, key in `.env`). Gen 2 variants, pick best, rename `EpN_T1..T5.mp3`.
+- **Images:** Higgsfield MCP `f0718410…` → `generate_image` model **`soul_location`**, 16:9, count 4 (~0.12 cr/4).
+  Prompt recipe: "Cinematic film still, [year]. [scene]. [lens/grade], 35mm grain, [mood]. No text, no logos, photorealistic."
+- **Animation:** same MCP `generate_video` model **`kling3_0_turbo`**, 1080p, 5s; pass the image's **job_id** as
+  `medias[].value role start_image` (~10 cr/clip). Decline preset "IN THE DARK" (`24bae836…`) via `declined_preset_id`
+  for literal camera motion. **Kling adds native audio → mute clips in assembly.**
+- **Limit:** 4 concurrent jobs (starter) for BOTH images & videos → fire one `count:4` wave, wait. ~40s/image-wave, ~2min/clip.
+- **Download:** `show_generations` rawUrl; name by createdAt order or job_id → MMSS; big lists dump to file → parse with `ConvertFrom-Json`.
+- **Density rule:** ~1 image / 8s (Ep1-3 = 68-93 imgs). First ~5 hook frames animated; animation must land in all 3 Shorts.
+- **Assembly:** `scripts/assemble_epN.ps1` (Ken Burns zoompan + clip overlay → silent video) + audio mux (music bed per
+  cue sheet, `sidechaincompress` duck under VO, `loudnorm I=-14`) → `out/`. ffmpeg = `node_modules/ffmpeg-static/ffmpeg.exe`.
+
+## 🔄 Self-Improvement Loop (standing instruction)
+After we change / redo / improve / optimize anything, record the lesson the SAME session so next time is
+faster, cheaper, better: durable technical workflow → this CLAUDE.md; working-style → auto-memory. Treat my
+own efficiency (fewer tokens, fewer round-trips) as an explicit goal the user asked for.
+
+### Ep4 Napster — vidIQ research (2026-06-25), script + assets now DONE
 - Keyword "napster": score 63 (High), volume 18 459, competition **37.7 (LOW)** ← good
 - Trend ↓↓ Falling (historical topic) — offset with Metallica angle (evergreen conflict)
 - Top competitor: "Napster vs. Metallica: The $20 BILLION War That Changed..." — The Big Flop
