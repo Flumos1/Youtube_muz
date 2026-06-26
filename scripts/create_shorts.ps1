@@ -21,7 +21,13 @@ param(
 )
 
 $ROOT   = Split-Path $PSScriptRoot -Parent
-$FFMPEG = "C:\Temp\ffmpeg_dl\ffmpeg-8.1.1-essentials_build\bin\ffmpeg.exe"
+# Resolve ffmpeg: prefer the C:\Temp build, fall back to node_modules (this machine), then PATH
+$FFMPEG = @(
+  "C:\Temp\ffmpeg_dl\ffmpeg-8.1.1-essentials_build\bin\ffmpeg.exe",
+  (Join-Path $ROOT "node_modules\ffmpeg-static\ffmpeg.exe")
+) | Where-Object { Test-Path $_ } | Select-Object -First 1
+if (-not $FFMPEG) { $FFMPEG = (Get-Command ffmpeg -ErrorAction SilentlyContinue).Source }
+if (-not $FFMPEG) { Write-Error "ffmpeg not found (C:\Temp, node_modules, or PATH)"; exit 1 }
 $CROP   = "crop=ih*9/16:ih:(iw-ih*9/16)/2:0,scale=1080:1920"
 $FONT   = "C\:/Windows/Fonts/impact.ttf"   # burned-in subscribe CTA font (last 3s)
 
@@ -42,6 +48,11 @@ $cuts = @{
     @{ label="short1_hook";    start="00:00:00"; end="00:01:00" }   # arrested shop owner -> McLaren premise
     @{ label="short2_grundy";  start="00:04:40"; end="00:05:40" }   # Bill Grundy live TV incident
     @{ label="short3_trial";   start="00:08:45"; end="00:09:45" }   # chart irregularities -> Bollocks trial
+  )
+  4 = @(
+    @{ label="short1_hook";    start="00:00:00"; end="00:01:00" }   # two college kids -> federal judge (animated 0000-0102)
+    @{ label="short2_metallica"; start="00:03:35"; end="00:04:40" } # Metallica 13 boxes, 317K users, most hated band
+    @{ label="short3_40billion"; start="00:09:30"; end="00:10:30" } # $40B, labels are Spotify shareholders (irony)
   )
 }
 # ─────────────────────────────────────────────────────────────────────────────
