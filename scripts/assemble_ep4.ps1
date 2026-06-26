@@ -54,7 +54,7 @@ if (-not $AudioOnly) {
     else                     { $durSec = [math]::Ceiling($VO_END - $tcSec) }
     if ($durSec -lt 1) { $durSec = 1 }
     $N = [int]($durSec * 30); $M = [math]::Max($N - 1, 1)
-    $out = "$SEG\" + $idx.ToString("000") + ".mp4"
+    $segOut = "$SEG\" + $idx.ToString("000") + ".mp4"
 
     $src = $null
     if ($clipTCs -contains $tc) { $src = Get-ChildItem "$VID\$tc.mp4" -ErrorAction SilentlyContinue | Select-Object -First 1 }
@@ -62,7 +62,7 @@ if (-not $AudioOnly) {
     if ($src) {
       # clip: scale/crop to 1080p, drop Kling audio, freeze last frame to fill the slot
       $vf = "scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,fps=30,format=yuv420p,tpad=stop_mode=clone:stop_duration=$([int]($durSec+2))"
-      & $FF -y -i $src.FullName -an -vf $vf -frames:v $N -r 30 -c:v libx264 -preset veryfast -pix_fmt yuv420p $out 2>$null
+      & $FF -y -i $src.FullName -an -vf $vf -frames:v $N -r 30 -c:v libx264 -preset veryfast -pix_fmt yuv420p $segOut 2>$null
       Write-Host ("[{0,2}/{1}] {2} CLIP  {3}s" -f ($idx+1), $total, $tc, $durSec)
     } else {
       $kb = $kbCycle[$kbIdx % $kbCycle.Count]; $kbIdx++
@@ -73,11 +73,11 @@ if (-not $AudioOnly) {
         "PANL" { $z="z=1.06";                $x="x=(iw-iw/zoom)*(1-on/$M)"; $y="y=ih/2-(ih/zoom/2)" }
       }
       $vf = "scale=3840:2160:force_original_aspect_ratio=increase,crop=3840:2160,zoompan=${z}:${x}:${y}:d=${N}:s=1920x1080:fps=30,format=yuv420p"
-      & $FF -y -loop 1 -i "$IMG\$tc.png" -vf $vf -frames:v $N -r 30 -c:v libx264 -preset veryfast -pix_fmt yuv420p $out 2>$null
+      & $FF -y -loop 1 -i "$IMG\$tc.png" -vf $vf -frames:v $N -r 30 -c:v libx264 -preset veryfast -pix_fmt yuv420p $segOut 2>$null
       Write-Host ("[{0,2}/{1}] {2} {3,-4}  {4}s" -f ($idx+1), $total, $tc, $kb, $durSec)
     }
-    if (-not (Test-Path $out)) { throw "Segment failed: $tc" }
-    $listLines.Add("file '" + ($out -replace '\\','/') + "'")
+    if (-not (Test-Path $segOut)) { throw "Segment failed: $tc" }
+    $listLines.Add("file '" + ($segOut -replace '\\','/') + "'")
     $idx++
   }
   [System.IO.File]::WriteAllLines($list, $listLines, (New-Object System.Text.UTF8Encoding($false)))
