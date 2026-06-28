@@ -35,15 +35,18 @@ Each episode's assets live in its own top-level folder `Эпизод N/`:
 - All "Видео по теме" → `rmIUQdDgztY` ✅
 - Phone verified ✅ · All channel features unlocked ✅
 
-## ▶ NEXT SESSION — START HERE (updated 2026-06-26)
-**Ep4 Napster — ALL ASSETS DONE. Next move: ASSEMBLE + PUBLISH.**
-- ✅ Script `Эпизод 4/docs/Ep4_script_EN.md` (subscribe-ask at climax) · ✅ VO `audio/Ep4_VO_full.mp3` (10:45,
-  Adam Deep English Story Voice) · ✅ 5 Suno tracks `audio/Ep4_T1..T5.mp3` · ✅ 71 images
-  `images/higgsfield_images/MMSS.png` · ✅ 16 Kling clips `videos/MMSS.mp4` (1080p).
-- ▶ RUN: `pwsh scripts/assemble_ep4.ps1` → `build/ep4_video.mp4` → audio mux → `out/ep4_final.mp4`
-  (see `Эпизод 4/docs/Ep4_kling_animation_plan.md` for the assembly checklist + cue sheet).
-- Then publish (workflow below) + `scripts/create_shorts.ps1 -Episode 4` (cuts already defined).
-- Ep4 Higgsfield credits left ≈ 206 (starter). Title/tags candidates in the Ep4 research block below.
+## ▶ NEXT SESSION — START HERE (updated 2026-06-28)
+**Ep4 Napster — PUBLISHED ✅. Сейчас: housekeeping Ep4 + выбрать Ep5.**
+
+**Ep4 — Napster** (`sUzpQCJhziQ`, 10:47, публичный 2026-06-26)
+- Long: "Metallica Sued Napster for $20 Billi..." ✅ · 3 Shorts ✅ · Channel trailer (0:35) ✅
+- **Housekeeping:**
+  - [ ] "Видео по теме" в 3 Ep4 Shorts → `sUzpQCJhziQ` (проверить/поставить)
+  - [ ] Язык метаданных Ep4 → /translations → English (US)
+  - [ ] Studio: watermark + subscribe link (Chrome extension)
+- Ep4 Higgsfield credits left ≈ 206 (starter).
+
+**Ep5 — тема на выбор:** Woodstock '99 · Phil Spector · Kurt Cobain/Nevermind · (см. Next Episode Ideas)
 
 ## ⚙ Self-Generation Pipeline (MCP) — proven on Ep4, USE THIS
 I do the whole pipeline myself; don't hand steps back to the user unless genuinely unsure (then ask one
