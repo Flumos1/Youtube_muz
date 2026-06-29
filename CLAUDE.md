@@ -35,18 +35,25 @@ Each episode's assets live in its own top-level folder `Эпизод N/`:
 - All "Видео по теме" → `rmIUQdDgztY` ✅
 - Phone verified ✅ · All channel features unlocked ✅
 
-## ▶ NEXT SESSION — START HERE (updated 2026-06-28)
-**Ep4 Napster — PUBLISHED ✅. Сейчас: housekeeping Ep4 + выбрать Ep5.**
+## ▶ NEXT SESSION — START HERE (updated 2026-06-29)
+**Ep5 Phil Spector — PUBLISHED ✅. Ep6 на выбор.**
+
+**Ep5 — Phil Spector** (`n6unybgd5E4`, 15:45, публичный 2026-06-29)
+- Long: "He Invented the Sound of the 60s — Then Shot a Woman in His Mansion" ✅
+- Shorts: `oPpupkvFyh4` (опубл.) · `_a7mJy0mqxY` (03:23) · `ZXpqnMZINcA` (05:23) · `7pk51gqK-vE` (07:23) · `dxhTLuf9vgE` (09:23)
+- Все Shorts запланированы на **29 июня**, каждые 2 часа ✅
+- **Housekeeping:**
+  - [x] "Видео по теме" в 5 Ep5 Shorts → `n6unybgd5E4` ✅ (2026-06-29)
+  - [x] AI disclosure (Использование ИИ → Да) ✅ (2026-06-29)
+  - [x] Язык метаданных Ep5 → English (US) ✅ (подтверждено 2026-06-29)
 
 **Ep4 — Napster** (`sUzpQCJhziQ`, 10:47, публичный 2026-06-26)
-- Long: "Metallica Sued Napster for $20 Billi..." ✅ · 3 Shorts ✅ · Channel trailer (0:35) ✅
 - **Housekeeping:**
-  - [ ] "Видео по теме" в 3 Ep4 Shorts → `sUzpQCJhziQ` (проверить/поставить)
-  - [ ] Язык метаданных Ep4 → /translations → English (US)
+  - [x] "Видео по теме" в 3 Ep4 Shorts → `sUzpQCJhziQ` ✅ (2026-06-29)
+  - [x] Язык метаданных Ep4 → English (US) ✅ (подтверждено 2026-06-29)
   - [ ] Studio: watermark + subscribe link (Chrome extension)
-- Ep4 Higgsfield credits left ≈ 206 (starter).
 
-**Ep5 — тема на выбор:** Woodstock '99 · Phil Spector · Kurt Cobain/Nevermind · (см. Next Episode Ideas)
+**Ep6 — тема на выбор:** Woodstock '99 · Kurt Cobain/Nevermind · (см. Next Episode Ideas)
 
 ## ⚙ Self-Generation Pipeline (MCP) — proven on Ep4, USE THIS
 I do the whole pipeline myself; don't hand steps back to the user unless genuinely unsure (then ask one
@@ -101,6 +108,25 @@ Still pending: Studio quick wins (watermark, subscribe link) — needs Chrome ex
 
 ### Proven JS snippets (Studio)
 ```js
+// Click Polymer/ytcp-entity-card items in dialogs (coordinate clicks unreliable when viewport small)
+// Use scrollIntoView + PointerEvent — proven for "Видео по теме" picker dialog
+const card = [...document.querySelectorAll('ytcp-entity-card')].find(c => c.innerText?.includes('Target Title'));
+card.scrollIntoView({block:'center', inline:'center'});
+await new Promise(r => setTimeout(r, 300));
+card.dispatchEvent(new PointerEvent('pointerdown', {bubbles:true, cancelable:true, pointerId:1}));
+card.dispatchEvent(new PointerEvent('pointerup', {bubbles:true, cancelable:true, pointerId:1}));
+card.dispatchEvent(new MouseEvent('click', {bubbles:true, cancelable:true}));
+
+// Open "Видео по теме" dialog on Shorts edit page
+[...document.querySelectorAll('ytcp-text-dropdown-trigger')].find(t => t.innerText?.includes('Видео по теме'))?.click();
+
+// AI Disclosure: expand "Прямая реклама, коллаборации и не только" first, THEN find "Использование ИИ"
+// The section is HIDDEN behind this expandable — click it to reveal the radio buttons
+[...document.querySelectorAll('*')].filter(el => el.innerText?.includes('Прямая реклама') && el.childElementCount<=3).forEach(s=>s.click());
+// Then click the "Да" radio in the AI section
+const aiSection = [...document.querySelectorAll('*')].find(el => el.innerText?.includes('Использование ИИ') && el.innerText?.includes('Да') && el.childElementCount<=10);
+[...aiSection.querySelectorAll('tp-yt-paper-radio-button')].find(r=>r.innerText?.trim()==='Да')?.click();
+
 // Scroll the Studio main panel (NOT window.scrollY — that doesn't work)
 document.querySelector('main.style-scope').scrollTop += 600
 
