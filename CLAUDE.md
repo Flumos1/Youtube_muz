@@ -43,15 +43,64 @@ Each episode's assets live in its own top-level folder `Эпизод N/`:
 - ⚠️ AI disclosure — set after video finishes processing (not visible during SD processing)
 - ⚠️ Thumbnail — upload via Значок → Загрузить файл after processing completes
 
-## ▶ NEXT SESSION — START HERE (updated 2026-06-26)
-**Ep4 PUBLISHED. Remaining tasks:**
-- ✅ Short #2 `IoLDVLCT_TA` published, "Видео по теме" set
-- ✅ Short #3 `5ibSBt5u5ak` published, "Видео по теме" set
-- All 3 Shorts DONE ✅
-- After Ep4 video processing completes: set AI disclosure (Сведения → scroll down → Использование ИИ → Да)
-- Create thumbnail for Ep4 and upload via video edit page → Значок → Загрузить файл
-- Choose Ep5 topic from backlog
-- Ep4 Higgsfield credits left ≈ 206 (starter).
+## ✅ Subtitles + End Screens pass (2026-07-01)
+**Subtitles:** all 23 channel videos now have manually-uploaded English subtitles (uploaded via "Без
+временных кодов" → YouTube auto-syncs to audio) — 5 long videos + 18 Shorts (12 original + 6 round-2).
+Text for videos with no local script file (Phil Spector) was reconstructed from YouTube's own
+auto-captions via `get_video_transcript`/`get_bulk_video_transcripts` (Nexlev MCP) — fast and accurate,
+reuse this approach for any future episode missing a local script.
+**End screens:** all 5 long videos now chain to each other (not "Самое подходящее" auto-pick) in a closed
+loop matching publish order: Fleetwood Mac → Pink Floyd → Sex Pistols → Napster → Phil Spector → back to
+Fleetwood Mac. Set via Редактор → Конечные заставки → Изменить → click the video element → "Выбранное
+видео" → search by title. Subscribe element left as-is.
+**Still pending (user must do — Studio can't post Shorts comments):** pinned comment with the long-video
+link on each Short, pack ready in `docs/shorts_pinned_comments.md`. Start with the highest-view Shorts
+(Fleetwood Mac 1.7–1.8K).
+
+## 📉 Channel Diagnosis — why long videos have ~0 views (2026-06-27)
+Channel `@flumos` `UCY703fBZ7zpLokv1oPea_gA` = **4 subs**, all 4 long videos published 24–26 Jun (1–3 days old).
+Pulled Studio **Охват/Reach** (С момента публикации):
+- Napster `sUzpQCJhziQ` (1 day): **4 impressions**, CTR 25%, 2 views; traffic = Channel pages 50%.
+- Pink Floyd `rmIUQdDgztY` (3 days): **19 impressions**, 6 views, 2 unique; traffic = **Shorts по ссылке 100%**.
+**Root cause: NOT a bug.** Videos are Public, crawlable, English, Music category, worldwide (checked
+youtube_video_details). Ep1 Ukrainian-language bug is GONE. CTR where measurable is healthy (25% ≫ 4–6% norm)
+→ thumbnails/titles fine. Problem = **impression starvation**: a 4-sub, days-old channel gets almost no
+algorithmic distribution on long-form. Search/Suggested/Browse ≈ 0.
+**What IS working: the Shorts→long funnel** — 100% of Pink Floyd traffic came via the Short's "Видео по теме"
+link. Mechanism fine; just not enough Shorts volume.
+**Fix (priority): (1) Shorts volume — DAILY (upgraded 2026-07-01 from 3-5/week; only fast source of
+subs + long-form traffic at this size). (2) 1 long/week, not in bursts. (3) patience. (4) hygiene —
+mostly already OK (see below). Full breakdown: see [[project_growth_breakthrough_strategy]] in memory.**
+**Hygiene done 2026-06-27:** Tags — Ep2 Pink Floyd & Ep4 Napster had EMPTY tag fields → filled (~12 each);
+Ep1 Fleetwood Mac & Ep3 Sex Pistols already had full tag sets. All 4 confirmed video-language = English.
+Subtitles — DON'T bother uploading manual TXT: every long video already has **published English AUTO-captions**
+(checked Napster /translations). `youtube_video_details.hasCaption:false` only means "no manual track"; auto-captions
+are live and cover accessibility/indexing. API `keywords:[]` is also unreliable — verify tags in Studio, not via API.
+**6 FRESH Shorts (round 2) CUT & READY 2026-06-27** (1080x1920, 54s, SUBSCRIBE CTA) — pending upload, in each `out/`:
+`ep2_v2_father` `ep2_v2_berlin` → set Видео по теме `rmIUQdDgztY` · `ep3_v2_mclaren` `ep3_v2_amrecords` → `6Q0QNLyHBvM`
+· `ep4_v2_explosion` `ep4_v2_death` → `sUzpQCJhziQ`. Cut script: scratchpad `cut_fresh_shorts.ps1` (avoids short1/2/3 ranges).
+**Reusable diagnostic:** Studio → video → Analytics → Охват → check Показы(impressions) + источник трафика.
+Single/double-digit impressions = cold-channel starvation, not a metadata fault. Don't blame thumbnail if CTR is OK.
+
+## ▶ NEXT SESSION — START HERE (updated 2026-07-01)
+**Ep4 PUBLISHED & COMPLETE (long + 3 Shorts + thumbnail).** All done, AI disclosure set.
+
+**Ep5 = PHIL SPECTOR — PUBLISHED** (`n6unybgd5E4`, 15:45, "He Invented the Sound of the 60s — Then Shot
+a Woman Dead"), playlist "Music's Darkest Stories", language English ✅, AI disclosure = Да ✅, not-for-kids ✅,
+copyright clean ✅. 5 Shorts published: `oPpupkvFyh4` `dxhTLuf9vgE` `7pk51gqK-vE` `_a7mJy0mqxY` `ZXpqnMZINcA`,
+all "Видео по теме" → `n6unybgd5E4` ✅. **Discovered 2026-07-01**: this episode was produced/published in a
+session not reflected in CLAUDE.md at the time — no script files exist locally for it (text was
+reconstructed from YouTube auto-captions via `get_video_transcript` when backfilling subtitles 2026-07-01).
+Top-performing Shorts on the channel currently (190/92/76 views in 48h).
+
+**Эпизод 5/ folder on disk ≠ Phil Spector** — it contains a fully-scripted, VO-recorded **Whitney Houston**
+project (`Эпизод 5/docs/Ep5_VO_clean_EN.txt`, full audio in `Эпизод 5/audio/`) that was never assembled or
+published. Treat Whitney Houston as the **next episode to assemble** (visuals/animation/assembly steps still
+needed) — don't re-script it, the VO-first script + audio are done. Title (working): "Whitney Houston: The
+Voice That Drowned Twice." Hook: "She had the greatest voice on the planet. She drowned in a hotel bathtub
+at 48. Three years later her only daughter died the exact same way." Copyright: titles/facts/AI era visuals
+OK; NO real recordings, real photos, lyrics, or AI voice clone. Treatment: addiction + a child's death —
+documentary/respectful tone.
 
 ## ⚙ Self-Generation Pipeline (MCP) — proven on Ep4, USE THIS
 I do the whole pipeline myself; don't hand steps back to the user unless genuinely unsure (then ask one
@@ -66,7 +115,19 @@ question first). Token economy matters — avoid redundant polls and huge tool d
 - **Download:** `show_generations` rawUrl; name by createdAt order or job_id → MMSS; big lists dump to file → parse with `ConvertFrom-Json`.
 - **Density rule:** ~1 image / 8s (Ep1-3 = 68-93 imgs). First ~5 hook frames animated; animation must land in all 3 Shorts.
 - **Assembly:** `scripts/assemble_epN.ps1` (Ken Burns zoompan + clip overlay → silent video) + audio mux (music bed per
-  cue sheet, `sidechaincompress` duck under VO, `loudnorm I=-14`) → `out/`. ffmpeg = `node_modules/ffmpeg-static/ffmpeg.exe`.
+  cue sheet, `sidechaincompress` duck under VO, `loudnorm I=-14`) → `out/`.
+- **🎵 MUSIC MUST COVER THE WHOLE VIDEO (rule — user flagged 2026-06-30):** music bed has to play
+  end-to-end with NO gaps and NOT cut off before the video ends. Two failure modes that bit us:
+  (1) cue-sheet scheduling leaves silent gaps between cues; (2) final `[vo][music]amix=...:duration=first`
+  ties total length to the VO, so any tail where video > VO has no audio. **Fix/standard:** build ONE
+  continuous bed from **ALL Suno generations** (both variants of every prompt — there are ~9–10 mp3s/ep,
+  not just 5), `concat`+`aloop` it to ≥ video length, duck under VO across the entire timeline, and end on
+  **video duration (`-t <videoSec>` / `duration=longest`)**, never on the VO. Reusable: `scripts/mix_music_bed.ps1`.
+- **Tooling (installed 2026-06-30):** full **ffmpeg + ffprobe 8.1.2** at `C:\Temp\ffmpeg_dl\ffmpeg-*essentials_build\bin`
+  (added to USER PATH — new shells/apps get it; a *freshly spawned* shell in the SAME session may still need the
+  full path until the harness restarts). `ffmpeg-static` (node_modules) has NO ffprobe — use the C:\Temp build for
+  probing. Python 3.14 + `py` launcher present. Resolve ffmpeg via glob `C:\Temp\ffmpeg_dl\ffmpeg-*\bin\ffmpeg.exe`
+  (version folder changes), then node_modules, then PATH — don't hardcode a version.
 
 ## 🔄 Self-Improvement Loop (standing instruction)
 After we change / redo / improve / optimize anything, record the lesson the SAME session so next time is
@@ -100,6 +161,7 @@ Still pending: Studio quick wins (watermark, subscribe link) — needs Chrome ex
 - **Date picker**: defaults to TOMORROW — must explicitly click today's date
 - **Shorts tab URL**: `/videos/short` (not `/shorts`)
 - **Comments**: CANNOT post from Studio — clicking the field navigates to youtube.com → tab freezes. User must post manually on youtube.com
+- **File upload**: CANNOT be done by me. YouTube's `input[type=file]` is in shadow DOM (no a11y ref → `file_upload` MCP can't target it), and `file_upload` also caps at 10 MB + shared files only. The native OS picker is outside the page. → I open Создать→Добавить видео and fill ALL metadata/schedule/Видео по теме; the USER does only the file-select step (proven 2026-06-30). Confirmed today's date via Studio = correct system clock.
 - **CORS**: fetch() from studio.youtube.com → youtube.com times out/blocked — don't attempt
 - **Nexlev MCP**: requires paid plan — unusable on free tier
 - **ToolSearch**: load multiple schemas in one call: `select:tool1,tool2,tool3`
@@ -155,9 +217,12 @@ Full story → https://youtu.be/VIDEO_ID
 ```
 And "Видео по теме" set to the corresponding long video immediately after upload.
 
-**CTA overlay (auto):** `create_shorts.ps1` burns "SUBSCRIBE / for the full story" into the last
-3s of every Short (ON by default; `-NoCTA` to skip). The #1 subscriber-conversion lever — see
-`docs/growth-playbook.md`. Do NOT re-cut Ep3 Shorts (already uploaded with view momentum).
+**CTA overlay (auto, UPDATED 2026-06-30):** `create_shorts.ps1` now burns TWO stacked buttons into the
+last 5s of every Short — blue **WATCH FULL VIDEO** ("tap the link bottom-left") over red **SUBSCRIBE**
+("a new music story every week"). ON by default; `-NoCTA` to skip, `-CTASecs N` to change duration.
+Buttons are English (audience is English) and are visual cues only — the sole clickable Short→long link
+is the "Видео по теме" chip, so ALWAYS set it in Studio after upload. The #1 Short→long+subscriber lever.
+Do NOT re-cut already-uploaded Shorts that have view momentum (re-upload = lost views/comments).
 
 ### "Видео по теме" in Shorts
 - Phone verification required — **already done on this channel** ✅
@@ -184,10 +249,13 @@ $crop = "crop=ih*9/16:ih:(iw-ih*9/16)/2:0,scale=1080:1920"   # center-crop 16:9 
 4. **Images** → Higgsfield batches of 4, named `MMSS.png`
 5. **Animation** → Kling for 6–9 key moments
 6. **Music** → Suno 5 tracks (T1 tension / T2 warm / T3 melancholy / T4 bittersweet / T5 pastiche)
+6b. **Music length check** → total Suno music must be ≥ video length; if not, generate MORE tracks (all variants).
 7. **Assembly** → `scripts/assemble_epN.ps1` (Ken Burns + clips) → ep_video.mp4
-8. **CapCut** → VO + assembled video + music mix → export 1080p
+8. **Audio mix** → `scripts/mix_music_bed.ps1 -Episode N` — continuous bed from ALL Suno tracks, full length, ducked.
+8b. **🚦 QC GATE (MANDATORY before publish)** → `scripts/check_audio_coverage.ps1 -Episode N`. Must print
+   **PASS**. FAIL = silent/music-less tail or audio dies early (the Ep5 Phil Spector bug) → re-mix, do NOT upload.
 9. **Publish** → see publication workflow above
-10. **Shorts** → `scripts/create_shorts.ps1 -Episode N` → upload 3
+10. **Shorts** → `scripts/create_shorts.ps1 -Episode N` → upload 3 (two-button CTA auto)
 
 ## Real Audio Timing (VO = 5:21, Ep1 only)
 Hook→Bit3: 0:00–3:10 · Bit4: 3:10–4:03 · Bit5: 4:03–4:26 · Climax: 4:26–4:58 · Outro: 4:58–5:21.
@@ -226,9 +294,15 @@ See `docs/suno-prompts.md` for full prompts.
 - Climax: deliver the promised loop
 - CTA: question about their experience ("What did you think of…?")
 
-## Next Episode Ideas (Ep3+)
-1. "Never Mind the Bollocks" — the UK ban and its backfire
-2. Woodstock '99 — how one weekend ended the 90s music era
-3. Phil Spector's "Wall of Sound" — genius and horror
-4. Napster — the rise and fall that rewrote the music industry
-5. Kurt Cobain / Nevermind — the accidental revolution
+## Next Episode Ideas (Ep7+)
+**Done:** Ep3 = Sex Pistols · Ep4 = Napster · Ep5 = Phil Spector (PUBLISHED, see NEXT SESSION).
+**Next to assemble:** Whitney Houston (script + VO already done, sitting in `Эпизод 5/` folder — see
+NEXT SESSION note on the folder-numbering mismatch). Assign it a real episode number once assembled.
+**Audience strategy (from 2026-06-26 research):** current audience is mostly men ~27-35. Pivoting to
+pull WOMEN 27-35+ via famous-female-singer dark stories. Researched shortlist with real YT demand data:
+1. Whitney Houston — next up (best demand×gap; script+VO ready, see NEXT SESSION)
+2. Amy Winehouse — highest vidIQ score (71.5) but saturated; strong future candidate
+3. Selena — 17M on top doc, true-crime hook, trending again (Yolanda parole/Netflix 2025); saturated
+4. Tina Turner — abuse→escape→Queen of Rock empowerment arc; strong female resonance
+5. Karen Carpenter — anorexia story, uniquely female-coded (875K/389K/339K demand)
+**Older male-leaning backlog:** Woodstock '99 · Kurt Cobain/Nevermind
