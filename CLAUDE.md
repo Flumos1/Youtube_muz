@@ -102,6 +102,14 @@ at 48. Three years later her only daughter died the exact same way." Copyright: 
 OK; NO real recordings, real photos, lyrics, or AI voice clone. Treatment: addiction + a child's death —
 documentary/respectful tone.
 
+**⚠️ Superseding growth data found on origin/master (2026-06-28 session, different machine) — see
+`docs/growth-playbook.md`.** Real Studio pull: 96.2% of traffic is the Shorts feed, subscriber
+conversion 0.045%, top content = 11-20s micro-Shorts (72% of all views), long videos got 2-7 views in
+28 days despite full production pipelines. Proposed pivot: **kill 11-20s micro-Shorts, go 30-50s with
+hook→tension→cliffhanger + a SPOKEN subscribe-ask** (not just the text overlay), Shorts daily/every-other-day,
+pause or cheapen long-form until there's an audience. This refines (not replaces) [[project_growth_breakthrough_strategy]]
+in memory — reconcile the two before the next production session.
+
 ## ⚙ Self-Generation Pipeline (MCP) — proven on Ep4, USE THIS
 I do the whole pipeline myself; don't hand steps back to the user unless genuinely unsure (then ask one
 question first). Token economy matters — avoid redundant polls and huge tool dumps.

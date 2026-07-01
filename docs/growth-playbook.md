@@ -3,7 +3,51 @@
 > Operational companion to `project-strategy.md`. That file is the *what/why* of the channel.
 > This file is the *what to do every upload* to fix the one number that matters right now.
 
-## The one problem (snapshot 2026-06-25)
+## ⛔ ROOT-CAUSE DIAGNOSIS (real Studio data, 2026-06-28)
+
+Pulled from YouTube Studio Analytics, last 28 days:
+
+| Metric | Value |
+|--------|-------|
+| Views | 6,592 |
+| Watch time | 21.1 h |
+| **Subscribers** | **+3** → conversion **0.045%** |
+
+**Traffic source — the smoking gun:**
+
+| Source | Views | Share |
+|--------|-------|-------|
+| **Shorts feed** | 6,343 | **96.2%** |
+| Suggested (other YT pages) | 139 | 2.1% |
+| YouTube search | 52 | 0.8% |
+| Channel pages | 26 | 0.4% |
+
+**Top content = 11–20s micro-Shorts** ("She said the song…" 1,877 · "They made an album…" 1,741 ·
+"They sold their own divorce…" 1,119) = **72% of all views**.
+**Long documentaries, 28 days: Pink Floyd 7 · Sex Pistols 3 · Fleetwood Mac 3 · Ep4 Napster (full pipeline!) — 2 views.**
+
+### Why this kills subscribers — it's STRUCTURAL, not a missing checkbox
+The technical bridges are already in place (verified): every Short's description has the
+`?sub_confirmation=1` subscribe link + "Watch the full story →" + "Видео по теме". Conversion is still ~0.05%.
+1. 96% of views are the Shorts feed, dominated by 11–20s swipe-candy. A 16-second clip = zero investment → swipe, no subscribe.
+2. Long videos get 2–7 views because YouTube never tests them in browse (no watch history). Shorts→long CTR is ~1–2% and even that lands on near-dead videos.
+3. Faceless format = no host persona = weaker para-social pull = less reason to subscribe on a swipe.
+
+### The hard, data-driven conclusion
+Ep4 Napster cost a full pipeline (VO + 71 images + 16 Kling clips) and got **2 views**. That's a
+*distribution* problem, not a content one. Pouring expensive long-form in at 3 subs is throwing it at a wall.
+
+**▶ STRATEGIC PIVOT (proposed): Shorts-first until ~500–1,000 subs.**
+- Kill the 11–20s micro-Shorts. New format = **30–50s** with hook (3s) → tension → **cliffhanger + spoken
+  subscribe-ask** ("Subscribe — a new dark music story every day"). The CTA overlay already does the visual; add the VOICE ask.
+- Cadence: Shorts daily / every other day = the engine. 1 long/week is too slow for sub growth now.
+- Pause or radically cheapen long-form until there's an audience to serve it to.
+
+See `~/.claude/.../memory/subscriber_diagnosis.md` for the same finding.
+
+---
+
+## The one problem (historical snapshot 2026-06-25 — superseded by diagnosis above)
 
 | Metric | 24th | 25th |
 |--------|------|------|
