@@ -8,8 +8,14 @@
     pwsh scripts\create_shorts.ps1 -Episode 4            # subscribe CTA overlay ON (default)
     pwsh scripts\create_shorts.ps1 -Episode 4 -NoCTA     # plain cut, no overlay
 
-  A "SUBSCRIBE / for the full story" CTA is burned into the LAST 3 seconds of every
-  Short (the #1 subscriber-conversion lever). Pass -NoCTA to skip it.
+  TWO action buttons are burned into the LAST $CTASecs seconds of every Short
+  (the #1 Short -> long-video + subscriber conversion lever):
+    [ WATCH FULL VIDEO ]  (blue)  -> points to the "Видео по теме"/related link
+    [ SUBSCRIBE ]         (red)   -> nudges the native channel subscribe
+  Pass -NoCTA to skip the overlay. Use -CTASecs N to change how long it shows (default 5).
+
+  NOTE: buttons are visual cues, not clickable. The only clickable Short->long link is
+  the "Видео по теме" chip set in Studio. Always set it after upload.
 
   Cut points are defined per-episode in the $cuts hashtable below.
   Add a new entry for each episode before running.
@@ -17,15 +23,17 @@
 param(
   [Parameter(Mandatory)][int]$Episode,
   [string]$SourceFile = "",   # auto-resolved if omitted
-  [switch]$NoCTA              # disable the end-of-Short subscribe overlay
+  [switch]$NoCTA,             # disable the end-of-Short CTA overlay
+  [int]$CTASecs = 5          # how many seconds the two buttons stay on screen (end of clip)
 )
 
 $ROOT   = Split-Path $PSScriptRoot -Parent
 # Resolve ffmpeg: prefer the C:\Temp build, fall back to node_modules (this machine), then PATH
 $FFMPEG = @(
-  "C:\Temp\ffmpeg_dl\ffmpeg-8.1.1-essentials_build\bin\ffmpeg.exe",
+  (Get-ChildItem "C:\Temp\ffmpeg_dl\ffmpeg-*essentials_build\bin\ffmpeg.exe" -ErrorAction SilentlyContinue |
+     Sort-Object FullName -Descending | Select-Object -First 1 -Expand FullName),
   (Join-Path $ROOT "node_modules\ffmpeg-static\ffmpeg.exe")
-) | Where-Object { Test-Path $_ } | Select-Object -First 1
+) | Where-Object { $_ -and (Test-Path $_) } | Select-Object -First 1
 if (-not $FFMPEG) { $FFMPEG = (Get-Command ffmpeg -ErrorAction SilentlyContinue).Source }
 if (-not $FFMPEG) { Write-Error "ffmpeg not found (C:\Temp, node_modules, or PATH)"; exit 1 }
 $CROP   = "crop=ih*9/16:ih:(iw-ih*9/16)/2:0,scale=1080:1920"
@@ -83,14 +91,20 @@ Write-Host "Source: $SourceFile"
 foreach ($cut in $cuts[$Episode]) {
   $dest = Join-Path $OUT "ep${Episode}_$($cut.label).mp4"
 
-  # Build the video filter: center-crop/scale, plus a subscribe CTA burned into the last 3s
+  # Build the video filter: center-crop/scale, plus TWO action buttons burned into the
+  # last $CTASecs seconds — [WATCH FULL VIDEO] (blue) over [SUBSCRIBE] (red).
   $vf = $CROP
   if (-not $NoCTA) {
     $dur = [int](([timespan]$cut.end).TotalSeconds - ([timespan]$cut.start).TotalSeconds)
-    $cs  = [math]::Max(0, $dur - 3)
-    $cta = "drawtext=fontfile='$FONT':text='SUBSCRIBE':fontcolor=white:fontsize=120:box=1:boxcolor=red@0.92:boxborderw=26:x=(w-text_w)/2:y=h*0.62:enable='between(t,$cs,$dur)'," +
-           "drawtext=fontfile='$FONT':text='for the full story':fontcolor=white:fontsize=58:box=1:boxcolor=black@0.55:boxborderw=16:x=(w-text_w)/2:y=h*0.62+170:enable='between(t,$cs,$dur)'"
-    $vf = "$CROP,$cta"
+    $cs  = [math]::Max(0, $dur - $CTASecs)
+    $en  = "enable='between(t,$cs,$dur)'"
+    # Button 1 — WATCH FULL VIDEO (blue), sits mid-low; subtext points at the related-video chip
+    $btn1 = "drawtext=fontfile='$FONT':text='WATCH FULL VIDEO':fontcolor=white:fontsize=86:box=1:boxcolor=0x1565C0@0.95:boxborderw=24:x=(w-text_w)/2:y=h*0.50:$en," +
+            "drawtext=fontfile='$FONT':text='tap the link bottom-left':fontcolor=white:fontsize=46:box=1:boxcolor=black@0.55:boxborderw=12:x=(w-text_w)/2:y=h*0.50+140:$en"
+    # Button 2 — SUBSCRIBE (red), below it; subtext = value promise
+    $btn2 = "drawtext=fontfile='$FONT':text='SUBSCRIBE':fontcolor=white:fontsize=110:box=1:boxcolor=red@0.95:boxborderw=26:x=(w-text_w)/2:y=h*0.66:$en," +
+            "drawtext=fontfile='$FONT':text='a new music story every week':fontcolor=white:fontsize=46:box=1:boxcolor=black@0.55:boxborderw=12:x=(w-text_w)/2:y=h*0.66+170:$en"
+    $vf = "$CROP,$btn1,$btn2"
   }
 
   Write-Host "Cutting $($cut.label): $($cut.start) → $($cut.end)  (CTA: $(-not $NoCTA))"
