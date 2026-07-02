@@ -241,10 +241,14 @@ Series-branded template (Ep4+). For Ep1/Ep2 the older minimal form is fine.
 🎬 Music's Darkest Stories — Short #N
 Full story → https://youtu.be/VIDEO_ID
 
-🔔 Subscribe — a new music story every week.
+🔔 Subscribe: https://youtube.com/@flumos?sub_confirmation=1
 
 #Tag1 #Tag2 #Tag3 #Tag4 #Shorts
 ```
+**⚠️ MUST be a real clickable URL, not decorative text (fixed channel-wide 2026-07-02):** the Ep4+
+template had drifted to plain "🔔 Subscribe — a new music story every week." with no link — found on
+14/23 Shorts (all of Ep4, Ep5, and the 6 round-2 cuts). Ep1–3 originals already had the real
+`sub_confirmation=1` link and were the reference fixed FROM. Always use the URL form above.
 And "Видео по теме" set to the corresponding long video immediately after upload.
 
 **CTA overlay (auto, UPDATED 2026-06-30):** `create_shorts.ps1` now burns TWO stacked buttons into the
@@ -253,12 +257,23 @@ last 5s of every Short — blue **WATCH FULL VIDEO** ("tap the link bottom-left"
 Buttons are English (audience is English) and are visual cues only — the sole clickable Short→long link
 is the "Видео по теме" chip, so ALWAYS set it in Studio after upload. The #1 Short→long+subscriber lever.
 Do NOT re-cut already-uploaded Shorts that have view momentum (re-upload = lost views/comments).
+**⚠️ Verified 2026-07-02: the burned-in CTA overlay is NOT actually present in any currently-published
+Short** — checked Ep2 original and Ep5 (all 5) by extracting the last video frame with ffmpeg, no overlay
+in either. Ep5's `$cuts` hashtable entry doesn't even exist in `create_shorts.ps1` (only Ep1-4 defined),
+confirming Ep5 Shorts were cut by some other, undocumented process, not this script. Round-2 Shorts
+(`*_btn.mp4` filenames) likely DO have it per naming convention but weren't verified locally (files not
+on this machine). **Re-cutting+re-uploading old Shorts to add the overlay would lose their view/comment
+history — do not do this without explicit user sign-off**; it's a real tradeoff, not a pure improvement.
 
 ### "Видео по теме" in Shorts
 - Phone verification required — **already done on this channel** ✅
 - Set via Studio: video edit page → right panel → "Видео по теме" → Нет → pick video
 - Can be set for all Shorts in one session without phone again
-- **All Ep1 & Ep2 Shorts confirmed set ✅ (verified 2026-06-25)**
+- **All 23 channel Shorts audited + confirmed set correctly (2026-07-02)** — found and fixed exactly one
+  with "Видео по теме" = Нет (`MVIOUdTHtbM`, one of the 6 round-2 Shorts, never got it set after upload).
+  Picker only ever lists this channel's own videos — a video left unset does NOT show a competitor's
+  content in the picker UI itself, but does forfeit YouTube's guaranteed own-channel routing, so always
+  set it explicitly rather than leaving "Нет".
 
 ## Shorts Creation (ffmpeg — proven command)
 ```powershell
