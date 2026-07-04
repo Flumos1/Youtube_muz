@@ -388,8 +388,8 @@ See `docs/suno-prompts.md` for full prompts.
 
 ## Next Episode Ideas (Ep7+)
 **Done:** Ep3 = Sex Pistols · Ep4 = Napster · Ep5 = Phil Spector (PUBLISHED, see NEXT SESSION).
-**Next to assemble:** Whitney Houston (script + VO already done, sitting in `Эпизод 5/` folder — see
-NEXT SESSION note on the folder-numbering mismatch). Assign it a real episode number once assembled.
+**Next to assemble:** Whitney Houston = **Ep6** (script + VO text done in `Эпизод 6/docs/`, see NEXT
+SESSION note — recorded VO audio itself may only exist on the machine that recorded it, check before assembling).
 **Audience strategy (from 2026-06-26 research):** current audience is mostly men ~27-35. Pivoting to
 pull WOMEN 27-35+ via famous-female-singer dark stories. Researched shortlist with real YT demand data:
 1. Whitney Houston — next up (best demand×gap; script+VO ready, see NEXT SESSION)
