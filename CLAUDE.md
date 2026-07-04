@@ -181,8 +181,8 @@ same for image prompts (describe the visual mood, not "in the style of X").
 6. Thumbnail: drawtext overlay on the strongest generated image. Publish pack: 2 title options, full
    chapter/timestamp list in the description, tags, its own dedicated playlist (don't mix into the
    documentary playlist), category Music, AI disclosure Да.
-7. Cut 5 Shorts from the strongest moments (45s, 9:16, two-button CTA in the last 5s — same
-   `create_shorts.ps1`-style overlay). Upload the long video first, then all Shorts. **Shorts' own
+7. Cut 5 Shorts from the strongest moments (45s, 9:16, single red SUBSCRIBE CTA in the last 5s — same
+   `create_shorts.ps1`-style overlay; two-button layout retired 2026-07-04). Upload the long video first, then all Shorts. **Shorts' own
    upload wizard has "Добавить похожее видео" right in the "Дополнения" step — set it DURING upload**,
    don't rely on doing it after like with long videos (missing this on 2 of 5 Shorts here meant a
    retroactive fix via the post-publish edit page's "Видео по теме" pencil icon).
@@ -298,11 +298,12 @@ template had drifted to plain "🔔 Subscribe — a new music story every week."
 `sub_confirmation=1` link and were the reference fixed FROM. Always use the URL form above.
 And "Видео по теме" set to the corresponding long video immediately after upload.
 
-**CTA overlay (auto, UPDATED 2026-06-30):** `create_shorts.ps1` now burns TWO stacked buttons into the
-last 5s of every Short — blue **WATCH FULL VIDEO** ("tap the link bottom-left") over red **SUBSCRIBE**
-("a new music story every week"). ON by default; `-NoCTA` to skip, `-CTASecs N` to change duration.
-Buttons are English (audience is English) and are visual cues only — the sole clickable Short→long link
-is the "Видео по теме" chip, so ALWAYS set it in Studio after upload. The #1 Short→long+subscriber lever.
+**CTA overlay (auto, UPDATED 2026-07-04 — SINGLE button now):** `create_shorts.ps1` burns ONE button
+into the last 5s of every Short — red **SUBSCRIBE** ("a new music story every week"), centered. The blue
+WATCH FULL VIDEO button was REMOVED 2026-07-04 per explicit user request ("кнопка должна быть подписаться
+на мой канал", не «смотреть/поделиться видео») — don't re-add it without asking. ON by default; `-NoCTA`
+to skip, `-CTASecs N` to change duration. Button is English (audience is English) and a visual cue only —
+the sole clickable Short→long link is the "Видео по теме" chip, so ALWAYS set it in Studio after upload.
 Do NOT re-cut already-uploaded Shorts that have view momentum (re-upload = lost views/comments).
 **⚠️ Verified 2026-07-02: the burned-in CTA overlay is NOT actually present in any currently-published
 Short** — checked Ep2 original and Ep5 (all 5) by extracting the last video frame with ffmpeg, no overlay
@@ -347,7 +348,7 @@ $crop = "crop=ih*9/16:ih:(iw-ih*9/16)/2:0,scale=1080:1920"   # center-crop 16:9 
 8b. **🚦 QC GATE (MANDATORY before publish)** → `scripts/check_audio_coverage.ps1 -Episode N`. Must print
    **PASS**. FAIL = silent/music-less tail or audio dies early (the Ep5 Phil Spector bug) → re-mix, do NOT upload.
 9. **Publish** → see publication workflow above
-10. **Shorts** → `scripts/create_shorts.ps1 -Episode N` → upload 3 (two-button CTA auto)
+10. **Shorts** → `scripts/create_shorts.ps1 -Episode N` → upload 3 (single SUBSCRIBE CTA auto)
 
 ## Real Audio Timing (VO = 5:21, Ep1 only)
 Hook→Bit3: 0:00–3:10 · Bit4: 3:10–4:03 · Bit5: 4:03–4:26 · Climax: 4:26–4:58 · Outro: 4:58–5:21.

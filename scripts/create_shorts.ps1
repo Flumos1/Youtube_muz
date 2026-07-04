@@ -8,13 +8,14 @@
     pwsh scripts\create_shorts.ps1 -Episode 4            # subscribe CTA overlay ON (default)
     pwsh scripts\create_shorts.ps1 -Episode 4 -NoCTA     # plain cut, no overlay
 
-  TWO action buttons are burned into the LAST $CTASecs seconds of every Short
-  (the #1 Short -> long-video + subscriber conversion lever):
-    [ WATCH FULL VIDEO ]  (blue)  -> points to the "Видео по теме"/related link
-    [ SUBSCRIBE ]         (red)   -> nudges the native channel subscribe
+  ONE action button is burned into the LAST $CTASecs seconds of every Short
+  (the #1 subscriber-conversion lever):
+    [ SUBSCRIBE ]  (red)  -> nudges the native channel subscribe
+  (The blue WATCH FULL VIDEO button was dropped 2026-07-04 per user request —
+   subscribe-to-channel is the single CTA now.)
   Pass -NoCTA to skip the overlay. Use -CTASecs N to change how long it shows (default 5).
 
-  NOTE: buttons are visual cues, not clickable. The only clickable Short->long link is
+  NOTE: the button is a visual cue, not clickable. The only clickable Short->long link is
   the "Видео по теме" chip set in Studio. Always set it after upload.
 
   Cut points are defined per-episode in the $cuts hashtable below.
@@ -24,7 +25,7 @@ param(
   [Parameter(Mandatory)][int]$Episode,
   [string]$SourceFile = "",   # auto-resolved if omitted
   [switch]$NoCTA,             # disable the end-of-Short CTA overlay
-  [int]$CTASecs = 5          # how many seconds the two buttons stay on screen (end of clip)
+  [int]$CTASecs = 5          # how many seconds the button stays on screen (end of clip)
 )
 
 $ROOT   = Split-Path $PSScriptRoot -Parent
@@ -91,20 +92,17 @@ Write-Host "Source: $SourceFile"
 foreach ($cut in $cuts[$Episode]) {
   $dest = Join-Path $OUT "ep${Episode}_$($cut.label).mp4"
 
-  # Build the video filter: center-crop/scale, plus TWO action buttons burned into the
-  # last $CTASecs seconds — [WATCH FULL VIDEO] (blue) over [SUBSCRIBE] (red).
+  # Build the video filter: center-crop/scale, plus ONE action button burned into the
+  # last $CTASecs seconds — [SUBSCRIBE] (red), centered.
   $vf = $CROP
   if (-not $NoCTA) {
     $dur = [int](([timespan]$cut.end).TotalSeconds - ([timespan]$cut.start).TotalSeconds)
     $cs  = [math]::Max(0, $dur - $CTASecs)
     $en  = "enable='between(t,$cs,$dur)'"
-    # Button 1 — WATCH FULL VIDEO (blue), sits mid-low; subtext points at the related-video chip
-    $btn1 = "drawtext=fontfile='$FONT':text='WATCH FULL VIDEO':fontcolor=white:fontsize=86:box=1:boxcolor=0x1565C0@0.95:boxborderw=24:x=(w-text_w)/2:y=h*0.50:$en," +
-            "drawtext=fontfile='$FONT':text='tap the link bottom-left':fontcolor=white:fontsize=46:box=1:boxcolor=black@0.55:boxborderw=12:x=(w-text_w)/2:y=h*0.50+140:$en"
-    # Button 2 — SUBSCRIBE (red), below it; subtext = value promise
-    $btn2 = "drawtext=fontfile='$FONT':text='SUBSCRIBE':fontcolor=white:fontsize=110:box=1:boxcolor=red@0.95:boxborderw=26:x=(w-text_w)/2:y=h*0.66:$en," +
-            "drawtext=fontfile='$FONT':text='a new music story every week':fontcolor=white:fontsize=46:box=1:boxcolor=black@0.55:boxborderw=12:x=(w-text_w)/2:y=h*0.66+170:$en"
-    $vf = "$CROP,$btn1,$btn2"
+    # SUBSCRIBE (red), mid-low; subtext = value promise
+    $btn = "drawtext=fontfile='$FONT':text='SUBSCRIBE':fontcolor=white:fontsize=110:box=1:boxcolor=red@0.95:boxborderw=26:x=(w-text_w)/2:y=h*0.58:$en," +
+           "drawtext=fontfile='$FONT':text='a new music story every week':fontcolor=white:fontsize=46:box=1:boxcolor=black@0.55:boxborderw=12:x=(w-text_w)/2:y=h*0.58+170:$en"
+    $vf = "$CROP,$btn"
   }
 
   Write-Host "Cutting $($cut.label): $($cut.start) → $($cut.end)  (CTA: $(-not $NoCTA))"
