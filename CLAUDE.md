@@ -107,14 +107,17 @@ session not reflected in CLAUDE.md at the time — no script files exist locally
 reconstructed from YouTube auto-captions via `get_video_transcript` when backfilling subtitles 2026-07-01).
 Top-performing Shorts on the channel currently (190/92/76 views in 48h).
 
-**Эпизод 5/ folder on disk ≠ Phil Spector** — it contains a fully-scripted, VO-recorded **Whitney Houston**
-project (`Эпизод 5/docs/Ep5_VO_clean_EN.txt`, full audio in `Эпизод 5/audio/`) that was never assembled or
-published. Treat Whitney Houston as the **next episode to assemble** (visuals/animation/assembly steps still
-needed) — don't re-script it, the VO-first script + audio are done. Title (working): "Whitney Houston: The
-Voice That Drowned Twice." Hook: "She had the greatest voice on the planet. She drowned in a hotel bathtub
-at 48. Three years later her only daughter died the exact same way." Copyright: titles/facts/AI era visuals
-OK; NO real recordings, real photos, lyrics, or AI voice clone. Treatment: addiction + a child's death —
-documentary/respectful tone.
+**Ep6 = WHITNEY HOUSTON — scripted + VO recorded (on another machine), NOT yet assembled.** Fixed 2026-07-02:
+this project was mis-filed under `Эпизод 5/` (that path belongs to Phil Spector; a different-machine session
+reused the "next" folder number without checking CLAUDE.md, since Ep5's own docs were never committed).
+Docs moved into `Эпизод 6/docs` + `Эпизод 6/for_animation` (script, VO text, timecode map, batch queue —
+all committed to git). **⚠️ The actual recorded VO audio does NOT exist on this machine** — `audio/` is
+gitignored so it never left the other computer. Before assembling: either copy `Эпизод 6/audio/*.mp3` over
+from that machine, or re-record VO from `Эпизод 6/docs/Ep6_VO_clean_EN.txt` (script text is final, no
+re-scripting needed either way). Title (working): "Whitney Houston: The Voice That Drowned Twice." Hook:
+"She had the greatest voice on the planet. She drowned in a hotel bathtub at 48. Three years later her only
+daughter died the exact same way." Copyright: titles/facts/AI era visuals OK; NO real recordings, real
+photos, lyrics, or AI voice clone. Treatment: addiction + a child's death — documentary/respectful tone.
 
 **⚠️ Superseding growth data found on origin/master (2026-06-28 session, different machine) — see
 `docs/growth-playbook.md`.** Real Studio pull: 96.2% of traffic is the Shorts feed, subscriber
@@ -223,6 +226,25 @@ Still pending: Studio quick wins (watermark, subscribe link) — needs Chrome ex
 
 ### Proven JS snippets (Studio)
 ```js
+// Click Polymer/ytcp-entity-card items in dialogs (coordinate clicks unreliable when viewport small)
+// Use scrollIntoView + PointerEvent — proven for "Видео по теме" picker dialog
+const card = [...document.querySelectorAll('ytcp-entity-card')].find(c => c.innerText?.includes('Target Title'));
+card.scrollIntoView({block:'center', inline:'center'});
+await new Promise(r => setTimeout(r, 300));
+card.dispatchEvent(new PointerEvent('pointerdown', {bubbles:true, cancelable:true, pointerId:1}));
+card.dispatchEvent(new PointerEvent('pointerup', {bubbles:true, cancelable:true, pointerId:1}));
+card.dispatchEvent(new MouseEvent('click', {bubbles:true, cancelable:true}));
+
+// Open "Видео по теме" dialog on Shorts edit page
+[...document.querySelectorAll('ytcp-text-dropdown-trigger')].find(t => t.innerText?.includes('Видео по теме'))?.click();
+
+// AI Disclosure: expand "Прямая реклама, коллаборации и не только" first, THEN find "Использование ИИ"
+// The section is HIDDEN behind this expandable — click it to reveal the radio buttons
+[...document.querySelectorAll('*')].filter(el => el.innerText?.includes('Прямая реклама') && el.childElementCount<=3).forEach(s=>s.click());
+// Then click the "Да" radio in the AI section
+const aiSection = [...document.querySelectorAll('*')].find(el => el.innerText?.includes('Использование ИИ') && el.innerText?.includes('Да') && el.childElementCount<=10);
+[...aiSection.querySelectorAll('tp-yt-paper-radio-button')].find(r=>r.innerText?.trim()==='Да')?.click();
+
 // Scroll the Studio main panel (NOT window.scrollY — that doesn't work)
 document.querySelector('main.style-scope').scrollTop += 600
 
@@ -266,10 +288,14 @@ Series-branded template (Ep4+). For Ep1/Ep2 the older minimal form is fine.
 🎬 Music's Darkest Stories — Short #N
 Full story → https://youtu.be/VIDEO_ID
 
-🔔 Subscribe — a new music story every week.
+🔔 Subscribe: https://youtube.com/@flumos?sub_confirmation=1
 
 #Tag1 #Tag2 #Tag3 #Tag4 #Shorts
 ```
+**⚠️ MUST be a real clickable URL, not decorative text (fixed channel-wide 2026-07-02):** the Ep4+
+template had drifted to plain "🔔 Subscribe — a new music story every week." with no link — found on
+14/23 Shorts (all of Ep4, Ep5, and the 6 round-2 cuts). Ep1–3 originals already had the real
+`sub_confirmation=1` link and were the reference fixed FROM. Always use the URL form above.
 And "Видео по теме" set to the corresponding long video immediately after upload.
 
 **CTA overlay (auto, UPDATED 2026-06-30):** `create_shorts.ps1` now burns TWO stacked buttons into the
@@ -278,12 +304,23 @@ last 5s of every Short — blue **WATCH FULL VIDEO** ("tap the link bottom-left"
 Buttons are English (audience is English) and are visual cues only — the sole clickable Short→long link
 is the "Видео по теме" chip, so ALWAYS set it in Studio after upload. The #1 Short→long+subscriber lever.
 Do NOT re-cut already-uploaded Shorts that have view momentum (re-upload = lost views/comments).
+**⚠️ Verified 2026-07-02: the burned-in CTA overlay is NOT actually present in any currently-published
+Short** — checked Ep2 original and Ep5 (all 5) by extracting the last video frame with ffmpeg, no overlay
+in either. Ep5's `$cuts` hashtable entry doesn't even exist in `create_shorts.ps1` (only Ep1-4 defined),
+confirming Ep5 Shorts were cut by some other, undocumented process, not this script. Round-2 Shorts
+(`*_btn.mp4` filenames) likely DO have it per naming convention but weren't verified locally (files not
+on this machine). **Re-cutting+re-uploading old Shorts to add the overlay would lose their view/comment
+history — do not do this without explicit user sign-off**; it's a real tradeoff, not a pure improvement.
 
 ### "Видео по теме" in Shorts
 - Phone verification required — **already done on this channel** ✅
 - Set via Studio: video edit page → right panel → "Видео по теме" → Нет → pick video
 - Can be set for all Shorts in one session without phone again
-- **All Ep1 & Ep2 Shorts confirmed set ✅ (verified 2026-06-25)**
+- **All 23 channel Shorts audited + confirmed set correctly (2026-07-02)** — found and fixed exactly one
+  with "Видео по теме" = Нет (`MVIOUdTHtbM`, one of the 6 round-2 Shorts, never got it set after upload).
+  Picker only ever lists this channel's own videos — a video left unset does NOT show a competitor's
+  content in the picker UI itself, but does forfeit YouTube's guaranteed own-channel routing, so always
+  set it explicitly rather than leaving "Нет".
 
 ## Shorts Creation (ffmpeg — proven command)
 ```powershell
