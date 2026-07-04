@@ -8,6 +8,13 @@ out/
 thumbnail/
 branding/
 
+# enigma_mix (music compilation project) — same media-ignore convention
+enigma_mix/build_segs/
+enigma_mix/shorts/
+enigma_mix/*.mp3
+enigma_mix/*.mp4
+enigma_mix/thumbnail.png
+
 # dependencies & secrets
 node_modules/
 .env

@@ -25,6 +25,11 @@ Each episode's assets live in its own top-level folder `Эпизод N/`:
 **Episode 1** = Fleetwood Mac (`Эпизод 1/`) · **Episode 2** = Pink Floyd The Wall (`Эпизод 2/`)
 - Image convention: MMSS.png = timecode; each image = 5s slot
 
+**Side-series folders (root, not `Эпизод N/`):** `enigma_mix/` — first Ambient Mix release (see below).
+Same gitignore convention: `audio/`, `images/`, `build_segs/`, `shorts/`, raw `.mp3`/`.mp4`, `thumbnail.png`
+all stay local-only (~1.3GB); only `publish_pack.md` + `chapters_raw.tsv` are tracked. Transfer the actual
+media to another machine manually (not via git) — same as any episode's local assets.
+
 ## Channel Status (2026-06-26)
 **Ep1 — Fleetwood Mac Rumours** (reupload 2026-06-24, `TCrq1Xa3_Pg`)
 - Shorts: `DEMp1Rw5I5A` · `QBdQUtxlGI8` (~1.6K views best) · `FOq1P5qFWCY`
@@ -82,7 +87,16 @@ are live and cover accessibility/indexing. API `keywords:[]` is also unreliable 
 **Reusable diagnostic:** Studio → video → Analytics → Охват → check Показы(impressions) + источник трафика.
 Single/double-digit impressions = cold-channel starvation, not a metadata fault. Don't blame thumbnail if CTR is OK.
 
-## ▶ NEXT SESSION — START HERE (updated 2026-07-01)
+## ▶ NEXT SESSION — START HERE (updated 2026-07-04)
+**Latest:** Ambient Mix #1 ("Mystic Ambient Mixes" playlist) fully produced and published — long video
++ 5 Shorts, all CTAs and Похожее видео links set. See [[🎵 Ambient Mix Side-Series]] above for the
+reusable pipeline. Local media for it (`enigma_mix/audio`, `images`, `build_segs`, `shorts`, the 2h/3h
+mp3/mp4) is NOT in git (1.3GB) — only `enigma_mix/publish_pack.md` + `chapters_raw.tsv` are tracked;
+transfer the actual media files to another machine manually if resuming/re-cutting from there.
+Growth-strategy directive locked 2026-07-01: apply [[project_growth_breakthrough_strategy]] by default,
+Shorts cadence = **daily**, don't treat any topic (Whitney Houston included) as locked if a better
+"explosive" option exists — see [[feedback_work_depth_and_flexibility]] in memory.
+
 **Ep4 PUBLISHED & COMPLETE (long + 3 Shorts + thumbnail).** All done, AI disclosure set.
 
 **Ep5 = PHIL SPECTOR — PUBLISHED** (`n6unybgd5E4`, 15:45, "He Invented the Sound of the 60s — Then Shot
@@ -136,6 +150,39 @@ question first). Token economy matters — avoid redundant polls and huge tool d
   full path until the harness restarts). `ffmpeg-static` (node_modules) has NO ffprobe — use the C:\Temp build for
   probing. Python 3.14 + `py` launcher present. Resolve ffmpeg via glob `C:\Temp\ffmpeg_dl\ffmpeg-*\bin\ffmpeg.exe`
   (version folder changes), then node_modules, then PATH — don't hardcode a version.
+
+## 🎵 Ambient Mix Side-Series (started 2026-07-04) — new content format alongside episodes
+**Status:** Mix #1 PUBLISHED — playlist **"Mystic Ambient Mixes"** (separate from "Music's Darkest
+Stories"). Long video: 90s Gregorian-chant/downtempo/new-age style, ~3h, title "Enigmatic Mystic Ambient
+— 3 Hours of Gregorian Chants, Ethereal Voices & Downtempo (90s New Age Vibes)". 5 Shorts published
+(Veil of the Monks, Moon Over the Steppe, Rays of Destiny, Crimson Silk, Cathedral of Stars), each with
+the two-button CTA burned in and Видео по теме/**Похожее видео** → the long video. Category Music,
+AI disclosure Да, English confirmed.
+**Copyright:** same non-negotiable rule as episodes — Suno prompts describe the sonic signature
+(tempo, instruments, vocal texture, mood) and never name the real artist that inspired the style;
+same for image prompts (describe the visual mood, not "in the style of X").
+
+**Reusable pipeline for the next mix (any genre — describe, don't name):**
+1. Pick ~20-25 iconic tracks of the target sound → one Suno prompt per track, sonic description only.
+2. Generate 2 takes/prompt via TTAPI (`generate_suno.ps1` pattern), 3 concurrent jobs, resume-safe
+   (skip files that already exist) — ~50 takes for a 25-track set.
+3. Merge into one continuous mix with ffmpeg `acrossfade` (5s crossfades). Use a `filter_complex_script`
+   file, not an inlined filter — the command-line length limit breaks around ~50 chained crossfade
+   stages. Repeat/extend tracklist to hit target runtime, `loudnorm`, encode 320kbps MP3.
+4. One Higgsfield `soul_location` image per track (16:9, mood-only prompt) — same 4-concurrent-job
+   ceiling as episodes, submit in serialized waves with a sleep between.
+5. Build video: per track, still-image ffmpeg segment (`-loop 1 -framerate 2 -t <segDur>`, where
+   `segDur` = that take's audio duration minus the crossfade, except the final segment = duration + 2s
+   buffer) → `concat` demuxer → mux with the full audio mix (`-map 0:v -map 1:a -c:v copy -c:a aac
+   -shortest`). This keeps the silent video's length exactly in sync with the crossfaded audio.
+6. Thumbnail: drawtext overlay on the strongest generated image. Publish pack: 2 title options, full
+   chapter/timestamp list in the description, tags, its own dedicated playlist (don't mix into the
+   documentary playlist), category Music, AI disclosure Да.
+7. Cut 5 Shorts from the strongest moments (45s, 9:16, two-button CTA in the last 5s — same
+   `create_shorts.ps1`-style overlay). Upload the long video first, then all Shorts. **Shorts' own
+   upload wizard has "Добавить похожее видео" right in the "Дополнения" step — set it DURING upload**,
+   don't rely on doing it after like with long videos (missing this on 2 of 5 Shorts here meant a
+   retroactive fix via the post-publish edit page's "Видео по теме" pencil icon).
 
 ## 🔄 Self-Improvement Loop (standing instruction)
 After we change / redo / improve / optimize anything, record the lesson the SAME session so next time is
