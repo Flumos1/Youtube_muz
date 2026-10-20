@@ -45,10 +45,30 @@ function renderChannels() {
   for (const channel of state.catalog.channels) {
     const count = state.catalog.tracks.filter(track => track.channel === channel.id).length;
     const card = document.createElement('article');
-    card.className = `channel-card${state.channel === channel.id ? ' active' : ''}`;
+    card.className = `channel-card${count ? ' ready' : ''}`;
+    card.dataset.channel = channel.id;
+    card.dataset.count = String(count);
     card.innerHTML = `${channelArtwork(channel)}<div class="channel-body"><span class="channel-tagline">${channel.tagline}</span><h3>${channel.name}</h3><p>${channel.description}</p><div class="channel-action"><span class="channel-count">${count ? `${count} ${count === 1 ? 'трек' : count < 5 ? 'трека' : 'треков'}` : 'Готовится к эфиру'}</span><button type="button" aria-label="Слушать ${channel.name}" ${count ? '' : 'disabled'}>▶</button></div></div>`;
-    card.querySelector('button').addEventListener('click', () => selectChannel(channel.id));
+    card.querySelector('button').addEventListener('click', event => { event.stopPropagation(); toggleChannel(channel.id); });
+    if (count) card.addEventListener('click', () => toggleChannel(channel.id));
     grid.append(card);
+  }
+  syncChannelControls();
+}
+
+function syncChannelControls() {
+  if (!state.catalog) return;
+  for (const card of document.querySelectorAll('.channel-card')) {
+    const count = Number(card.dataset.count);
+    const channel = state.catalog.channels.find(item => item.id === card.dataset.channel);
+    const active = state.channel === channel.id;
+    const playing = active && !audio.paused;
+    card.classList.toggle('active', active);
+    card.querySelector('.channel-count').textContent = playing ? 'Сейчас играет' : active ? 'На паузе' : count ? `${count} ${count === 1 ? 'трек' : count < 5 ? 'трека' : 'треков'}` : 'Готовится к эфиру';
+    const button = card.querySelector('button');
+    button.textContent = playing ? '❚❚' : '▶';
+    button.setAttribute('aria-label', `${playing ? 'Пауза' : 'Слушать'} ${channel.name}`);
+    button.setAttribute('aria-pressed', String(playing));
   }
 }
 
@@ -72,6 +92,12 @@ function updatePlayer() {
     const mark = document.createElement('span'); mark.textContent = 'F.'; cover.append(mark);
   }
   $('#player-duration').textContent = state.channel === 'live' ? 'LIVE' : fmt(audio.duration || current?.duration);
+  syncChannelControls();
+}
+
+async function tryPlay() {
+  try { await audio.play(); }
+  catch (error) { toast(error.name === 'NotAllowedError' ? 'Браузер заблокировал звук. Нажмите ▶ ещё раз.' : 'Не удалось воспроизвести MP3. Проверьте звук браузера.'); }
 }
 
 async function startTrack(track) {
@@ -79,7 +105,7 @@ async function startTrack(track) {
   audio.src = track.audioUrl;
   audio.load();
   updatePlayer();
-  try { await audio.play(); } catch { toast('Нажмите воспроизведение в плеере'); }
+  await tryPlay();
 }
 
 async function selectChannel(id) {
@@ -88,8 +114,14 @@ async function selectChannel(id) {
   state.channel = id;
   state.queue = shuffle(items);
   state.queueIndex = 0;
-  renderChannels();
   await startTrack(state.queue[0]);
+}
+
+async function toggleChannel(id) {
+  if (state.channel === id && state.current) {
+    if (audio.paused) await tryPlay();
+    else audio.pause();
+  } else await selectChannel(id);
 }
 
 async function nextTrack() {
@@ -110,9 +142,8 @@ async function startLive() {
   state.current = null;
   audio.src = state.live.streamUrl;
   audio.load();
-  renderChannels();
   updatePlayer();
-  try { await audio.play(); } catch { toast('Нажмите воспроизведение в плеере'); }
+  await tryPlay();
 }
 
 async function refreshStatus() {
@@ -184,7 +215,7 @@ async function refreshArchive() {
 
 $('#player-play').addEventListener('click', async () => {
   if (!audio.src) return;
-  if (audio.paused) { try { await audio.play(); } catch { toast('Не удалось запустить звук'); } }
+  if (audio.paused) await tryPlay();
   else audio.pause();
 });
 $('#player-next').addEventListener('click', nextTrack);
