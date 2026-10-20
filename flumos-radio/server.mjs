@@ -36,7 +36,8 @@ const configuredLiveUrl = process.env.RADIO_LIVE_URL || '';
 const channels = [
   { id: 'ambient', name: 'Ambient', tagline: 'Пространство для мыслей', description: 'Спокойный атмосферный фон для работы и отдыха.', color: '#9e9cf5', number: '01' },
   { id: 'chill', name: 'Chill', tagline: 'Тёплый ритм дня', description: 'Мягкий downtempo и lounge без спешки.', color: '#f2ad88', number: '02' },
-  { id: 'jazz', name: 'Jazz Ballads', tagline: 'Вечер в медленном темпе', description: 'Лирические джазовые баллады и тихие мелодии.', color: '#e9bd79', number: '03' }
+  { id: 'jazz', name: 'Jazz Ballads', tagline: 'Вечер в медленном темпе', description: 'Лирические джазовые баллады и тихие мелодии.', color: '#e9bd79', number: '03' },
+  { id: 'cosmic', name: 'Cosmic', tagline: 'За пределами привычного', description: 'Психоделический рок, мистическая электроника и атмосферные путешествия.', color: '#a7b4ef', number: '04' }
 ];
 
 await fsp.mkdir(mediaDir, { recursive: true });
@@ -178,7 +179,7 @@ const server = http.createServer(async (req, res) => {
     if (pathname === '/api/recordings' && req.method === 'GET') return sendJson(res, 200, { recordings: recordings.map(publicRecording).sort((a, b) => b.date.localeCompare(a.date)) });
     if (pathname === '/api/listen' && req.method === 'POST') {
       const body = await readJson(req, 2048);
-      if (!validId(body.visitorId) || !['ambient', 'chill', 'jazz', 'live', 'recording'].includes(body.channel) || !['start', 'minute'].includes(body.event)) return sendError(res, 400, 'Некорректное событие');
+      if (!validId(body.visitorId) || ![...channels.map(channel => channel.id), 'live', 'recording'].includes(body.channel) || !['start', 'minute'].includes(body.event)) return sendError(res, 400, 'Некорректное событие');
       const id = crypto.createHash('sha256').update(body.visitorId).digest('hex');
       const today = new Date().toISOString().slice(0, 10);
       const visitor = metrics.visitors[id] || { days: [], minutes: 0, starts: 0 };

@@ -8,7 +8,7 @@
   <div id="dashboard" class="admin-grid admin-hidden">
     <section class="admin-panel"><h2>Добавить композицию</h2><p>Для радио нужен MP3. Обложка PNG, JPG или WebP необязательна. Публикуйте только треки, права на которые проверены.</p><form id="track-form" class="admin-form">
       <label>Название<input name="title" maxlength="100" required></label><label>Исполнитель<input name="artist" value="Flumos" maxlength="80" required></label>
-      <label>Канал<select name="channel"><option value="ambient">Ambient</option><option value="chill">Chill</option><option value="jazz">Jazz Ballads</option></select></label>
+      <label>Канал<select name="channel"><option value="ambient">Ambient</option><option value="chill">Chill</option><option value="jazz">Jazz Ballads</option><option value="cosmic">Cosmic</option></select></label>
       <label>MP3<input name="audio" type="file" accept=".mp3,audio/mpeg" required></label><label>Обложка<input name="cover" type="file" accept="image/png,image/jpeg,image/webp"></label>
       <button type="submit">Добавить в эфир ↗</button></form><div id="track-message" class="admin-message" role="status"></div></section>
     <section class="admin-panel"><h2>Live</h2><p>Начните передачу звука, затем включите статус эфира. При выключении чат закрывается.</p><form id="live-form" class="admin-form">
@@ -19,7 +19,7 @@
     </section>
     <section class="admin-panel wide"><h2>Добавить файлы или папку</h2><p>Выберите один или несколько файлов либо папку целиком. MP3 загрузятся по очереди в выбранный канал; названием станет имя файла. Обложка подхватится, если у неё то же имя, а в папке она лежит рядом с MP3. Остальные файлы пропускаются.</p>
       <form id="folder-form" class="admin-form folder-form">
-        <label>Канал<select name="channel"><option value="ambient">Ambient</option><option value="chill">Chill</option><option value="jazz">Jazz Ballads</option></select></label>
+        <label>Канал<select name="channel"><option value="ambient">Ambient</option><option value="chill">Chill</option><option value="jazz">Jazz Ballads</option><option value="cosmic">Cosmic</option></select></label>
         <label>Исполнитель<input name="artist" value="Flumos" maxlength="80" required></label>
         <fieldset class="upload-choice"><legend>Что загрузить</legend><label><input name="source" type="radio" value="files" checked> Один или несколько файлов</label><label><input name="source" type="radio" value="folder"> Папку целиком</label></fieldset>
         <div id="file-source"><label>MP3 и необязательные обложки<input name="files" type="file" accept=".mp3,audio/mpeg,.png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp" multiple required></label></div>
