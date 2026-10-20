@@ -17,6 +17,17 @@
       <div class="admin-row"><button type="button" id="live-on">Начать Live</button><button type="button" id="live-off" class="admin-button secondary">Завершить Live</button></div></form><div id="live-message-admin" class="admin-message" role="status"></div>
       <div style="height:28px"></div><h2>Запись эфира</h2><p>После Live загрузите MP3, который хотите оставить в архиве.</p><form id="recording-form" class="admin-form"><label>Название записи<input name="title" maxlength="100" required></label><label>Дата эфира<input name="date" type="date" required></label><label>MP3-запись<input name="audio" type="file" accept=".mp3,audio/mpeg" required></label><button type="submit">Добавить запись ↗</button></form><div id="recording-message" class="admin-message" role="status"></div>
     </section>
+    <section class="admin-panel wide"><h2>Добавить папку с музыкой</h2><p>Выберите папку и канал. Все MP3, включая файлы во вложенных папках, будут добавлены по очереди; названием станет имя файла. Обложка подхватится, если у неё то же имя и она лежит рядом с MP3. Остальные файлы пропускаются.</p>
+      <form id="folder-form" class="admin-form folder-form">
+        <label>Канал<select name="channel"><option value="ambient">Ambient</option><option value="chill">Chill</option><option value="jazz">Jazz Ballads</option></select></label>
+        <label>Исполнитель<input name="artist" value="Flumos" maxlength="80" required></label>
+        <label>Папка с MP3<input name="folder" type="file" webkitdirectory directory multiple required></label>
+        <div id="folder-selected" class="admin-message" role="status">Папка ещё не выбрана.</div>
+        <button type="submit">Добавить папку в эфир ↗</button>
+        <progress id="folder-progress" max="1" value="0" hidden></progress>
+      </form>
+      <div id="folder-message" class="admin-message" role="status"></div><ul id="folder-errors" class="folder-errors" aria-live="polite"></ul>
+    </section>
     <section class="admin-panel wide"><div class="admin-row" style="justify-content:space-between"><h2>Каталог</h2><button id="logout" class="admin-button secondary" type="button">Выйти</button></div><div id="track-list" class="admin-list"></div></section>
     <section class="admin-panel wide"><h2>Слушатели</h2><p id="metrics-summary">Загружаю показатели…</p></section>
     <section class="admin-panel wide"><h2>Модерация чата</h2><div id="admin-chat" class="admin-list admin-chat"><p>Чат откроется во время Live.</p></div></section>

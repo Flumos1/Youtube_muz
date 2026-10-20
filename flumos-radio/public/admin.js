@@ -98,6 +98,77 @@ $('#track-form').addEventListener('submit', async event => {
   finally { submit.disabled = false; }
 });
 
+const folderForm = $('#folder-form');
+const folderInput = folderForm.elements.folder;
+const folderProgress = $('#folder-progress');
+const folderErrors = $('#folder-errors');
+const folderPath = file => file.webkitRelativePath || file.name;
+const folderBase = file => folderPath(file).replace(/\.[^/.]+$/, '').toLocaleLowerCase('ru');
+const folderTitle = file => file.name.replace(/\.mp3$/i, '').trim().slice(0, 100);
+const selectedMp3s = () => Array.from(folderInput.files).filter(file => /\.mp3$/i.test(file.name));
+
+folderInput.addEventListener('change', () => {
+  const files = Array.from(folderInput.files);
+  const mp3s = selectedMp3s();
+  const folderName = files[0]?.webkitRelativePath?.split('/')[0] || 'Выбранная папка';
+  setMessage('#folder-selected', files.length ? `${folderName}: ${mp3s.length} MP3, ещё ${files.length - mp3s.length} других файлов.` : 'Папка ещё не выбрана.');
+  setMessage('#folder-message', '');
+  folderErrors.replaceChildren();
+});
+
+folderForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  const files = Array.from(folderInput.files);
+  const mp3s = selectedMp3s().sort((a, b) => folderPath(a).localeCompare(folderPath(b), 'ru', { numeric: true }));
+  if (!mp3s.length) { setMessage('#folder-message', 'В выбранной папке нет MP3.'); return; }
+  const button = folderForm.querySelector('button[type=submit]');
+  const channel = folderForm.elements.channel.value;
+  const artist = folderForm.elements.artist.value.trim() || 'Flumos';
+  const covers = new Map(files.filter(file => /\.(png|jpe?g|webp)$/i.test(file.name)).map(file => [folderBase(file), file]));
+  button.disabled = true;
+  folderInput.disabled = true;
+  folderProgress.hidden = false;
+  folderProgress.max = mp3s.length;
+  folderProgress.value = 0;
+  folderErrors.replaceChildren();
+  let added = 0; let skipped = 0; let failed = 0;
+  try {
+    const { tracks } = await api('/api/catalog');
+    const existing = new Set(tracks.filter(track => track.channel === channel).map(track => track.title.toLocaleLowerCase('ru')));
+    for (const file of mp3s) {
+      const title = folderTitle(file);
+      setMessage('#folder-message', `Обрабатываю ${folderProgress.value + 1} из ${mp3s.length}: ${file.name}`);
+      if (!title || existing.has(title.toLocaleLowerCase('ru'))) {
+        skipped++;
+      } else {
+        try {
+          const duration = await durationOf(file);
+          const audioFile = await upload(file, 'audio');
+          let coverFile = null;
+          const cover = covers.get(folderBase(file));
+          if (cover) {
+            try { coverFile = await upload(cover, 'cover'); }
+            catch (error) {
+              const item = document.createElement('li'); item.textContent = `${file.name}: обложка пропущена (${error.message}).`; folderErrors.append(item);
+            }
+          }
+          await jsonPost('/api/admin/tracks', { title, artist, channel, audioId: audioFile.id, coverId: coverFile?.id, coverExt: coverFile?.ext, duration });
+          existing.add(title.toLocaleLowerCase('ru'));
+          added++;
+        } catch (error) {
+          failed++;
+          const item = document.createElement('li'); item.textContent = `${file.name}: ${error.message}`; folderErrors.append(item);
+        }
+      }
+      folderProgress.value++;
+    }
+    setMessage('#folder-message', `Готово: добавлено ${added}, уже были в канале ${skipped}, ошибок ${failed}. Других файлов пропущено: ${files.length - mp3s.length}.`);
+    if (added) await refreshTracks();
+    if (!failed) { folderForm.reset(); folderForm.elements.artist.value = 'Flumos'; setMessage('#folder-selected', 'Папка ещё не выбрана.'); }
+  } catch (error) { setMessage('#folder-message', error.message); }
+  finally { button.disabled = false; folderInput.disabled = false; }
+});
+
 for (const [button, on] of [['#live-on', true], ['#live-off', false]]) {
   $(button).addEventListener('click', async () => {
     const form = $('#live-form');
