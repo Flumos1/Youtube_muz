@@ -36,7 +36,7 @@ function recordListening(event) {
 }
 
 function channelArtwork(channel) {
-  return `<div class="channel-art ${channel.id}"><span class="channel-number">FLUMOS / ${channel.number}</span><span class="art-word">${channel.name}</span></div>`;
+  return `<div class="channel-art ${channel.id}"><span class="channel-number">FLUMOS / ${channel.number}</span><span class="art-word">${channel.artworkName || channel.name}</span></div>`;
 }
 
 function renderChannels() {

@@ -37,7 +37,8 @@ const channels = [
   { id: 'ambient', name: 'Ambient', tagline: 'Пространство для мыслей', description: 'Спокойный атмосферный фон для работы и отдыха.', color: '#9e9cf5', number: '01' },
   { id: 'chill', name: 'Chill', tagline: 'Тёплый ритм дня', description: 'Мягкий downtempo и lounge без спешки.', color: '#f2ad88', number: '02' },
   { id: 'jazz', name: 'Jazz Ballads', tagline: 'Вечер в медленном темпе', description: 'Лирические джазовые баллады и тихие мелодии.', color: '#e9bd79', number: '03' },
-  { id: 'cosmic', name: 'Cosmic', tagline: 'За пределами привычного', description: 'Психоделический рок, мистическая электроника и атмосферные путешествия.', color: '#a7b4ef', number: '04' }
+  { id: 'cosmic', name: 'Cosmic', tagline: 'За пределами привычного', description: 'Психоделический рок, мистическая электроника и атмосферные путешествия.', color: '#a7b4ef', number: '04' },
+  { id: 'spectrum', name: 'Flumos Spectrum', artworkName: 'Spectrum', tagline: 'Авторское без границ жанра', description: 'Песни и инструментальная музыка Flumos: написанные самостоятельно или с помощью Suno.', color: '#f1a6c8', number: '05' }
 ];
 
 await fsp.mkdir(mediaDir, { recursive: true });

@@ -25,7 +25,7 @@ test('catalog, admin upload, playback range, live chat and archive', async () =>
   try {
     let response = await request('/api/catalog');
     assert.equal(response.status, 200);
-    assert.deepEqual((await response.json()).channels.map(channel => channel.id), ['ambient', 'chill', 'jazz', 'cosmic']);
+    assert.deepEqual((await response.json()).channels.map(channel => channel.id), ['ambient', 'chill', 'jazz', 'cosmic', 'spectrum']);
 
     response = await request('/api/admin/tracks', { method: 'POST' });
     assert.equal(response.status, 401);
@@ -51,6 +51,11 @@ test('catalog, admin upload, playback range, live chat and archive', async () =>
     response = await request('/api/admin/tracks', { method: 'POST', headers, body: JSON.stringify({ title: 'Космический тест', artist: 'Flumos', channel: 'cosmic', audioId: uploaded.id, duration: 12 }) });
     assert.equal(response.status, 201);
     response = await request('/api/listen', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ visitorId: '12345678-1234-1234-1234-123456789abc', channel: 'cosmic', event: 'start' }) });
+    assert.equal(response.status, 200);
+
+    response = await request('/api/admin/tracks', { method: 'POST', headers, body: JSON.stringify({ title: 'Авторская песня', artist: 'Flumos', channel: 'spectrum', audioId: uploaded.id, duration: 12 }) });
+    assert.equal(response.status, 201);
+    response = await request('/api/listen', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ visitorId: '12345678-1234-1234-1234-123456789abc', channel: 'spectrum', event: 'start' }) });
     assert.equal(response.status, 200);
 
     response = await request('/api/admin/live', { method: 'POST', headers, body: JSON.stringify({ on: true, title: 'Тест Live', streamUrl: 'http://127.0.0.1:8000/live.mp3' }) });
