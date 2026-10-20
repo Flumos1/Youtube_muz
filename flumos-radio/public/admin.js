@@ -99,34 +99,59 @@ $('#track-form').addEventListener('submit', async event => {
 });
 
 const folderForm = $('#folder-form');
+const filesInput = folderForm.elements.files;
 const folderInput = folderForm.elements.folder;
+const sourceRadios = Array.from(folderForm.querySelectorAll('input[name=source]'));
 const folderProgress = $('#folder-progress');
 const folderErrors = $('#folder-errors');
 const folderPath = file => file.webkitRelativePath || file.name;
 const folderBase = file => folderPath(file).replace(/\.[^/.]+$/, '').toLocaleLowerCase('ru');
 const folderTitle = file => file.name.replace(/\.mp3$/i, '').trim().slice(0, 100);
-const selectedMp3s = () => Array.from(folderInput.files).filter(file => /\.mp3$/i.test(file.name));
+const folderMode = () => folderForm.elements.source.value === 'folder';
+const activeInput = () => folderMode() ? folderInput : filesInput;
+const selectedFiles = () => Array.from(activeInput().files);
+const selectedMp3s = () => selectedFiles().filter(file => /\.mp3$/i.test(file.name));
 
-folderInput.addEventListener('change', () => {
-  const files = Array.from(folderInput.files);
+function updateSelected(clearFeedback = true) {
+  const files = selectedFiles();
   const mp3s = selectedMp3s();
   const folderName = files[0]?.webkitRelativePath?.split('/')[0] || 'Выбранная папка';
-  setMessage('#folder-selected', files.length ? `${folderName}: ${mp3s.length} MP3, ещё ${files.length - mp3s.length} других файлов.` : 'Папка ещё не выбрана.');
-  setMessage('#folder-message', '');
-  folderErrors.replaceChildren();
-});
+  const sourceName = folderMode() ? folderName : 'Выбрано';
+  setMessage('#folder-selected', files.length ? `${sourceName}: ${mp3s.length} MP3, ещё ${files.length - mp3s.length} других файлов.` : folderMode() ? 'Папка ещё не выбрана.' : 'Файлы ещё не выбраны.');
+  if (clearFeedback) { setMessage('#folder-message', ''); folderErrors.replaceChildren(); }
+}
+
+function syncSource(clearFeedback = true) {
+  const isFolder = folderMode();
+  $('#file-source').hidden = isFolder;
+  $('#folder-source').hidden = !isFolder;
+  filesInput.disabled = isFolder;
+  folderInput.disabled = !isFolder;
+  filesInput.required = !isFolder;
+  folderInput.required = isFolder;
+  updateSelected(clearFeedback);
+}
+
+for (const radio of sourceRadios) radio.addEventListener('change', () => syncSource());
+filesInput.addEventListener('change', () => updateSelected());
+folderInput.addEventListener('change', () => updateSelected());
+syncSource();
 
 folderForm.addEventListener('submit', async event => {
   event.preventDefault();
-  const files = Array.from(folderInput.files);
+  const files = selectedFiles();
   const mp3s = selectedMp3s().sort((a, b) => folderPath(a).localeCompare(folderPath(b), 'ru', { numeric: true }));
-  if (!mp3s.length) { setMessage('#folder-message', 'В выбранной папке нет MP3.'); return; }
+  if (!mp3s.length) { setMessage('#folder-message', 'В выбранных файлах нет MP3.'); return; }
   const button = folderForm.querySelector('button[type=submit]');
+  const sourceInput = activeInput();
   const channel = folderForm.elements.channel.value;
   const artist = folderForm.elements.artist.value.trim() || 'Flumos';
   const covers = new Map(files.filter(file => /\.(png|jpe?g|webp)$/i.test(file.name)).map(file => [folderBase(file), file]));
   button.disabled = true;
-  folderInput.disabled = true;
+  sourceInput.disabled = true;
+  folderForm.elements.channel.disabled = true;
+  folderForm.elements.artist.disabled = true;
+  for (const radio of sourceRadios) radio.disabled = true;
   folderProgress.hidden = false;
   folderProgress.max = mp3s.length;
   folderProgress.value = 0;
@@ -164,9 +189,15 @@ folderForm.addEventListener('submit', async event => {
     }
     setMessage('#folder-message', `Готово: добавлено ${added}, уже были в канале ${skipped}, ошибок ${failed}. Других файлов пропущено: ${files.length - mp3s.length}.`);
     if (added) await refreshTracks();
-    if (!failed) { folderForm.reset(); folderForm.elements.artist.value = 'Flumos'; setMessage('#folder-selected', 'Папка ещё не выбрана.'); }
+    if (!failed) { folderForm.reset(); folderForm.elements.artist.value = 'Flumos'; }
   } catch (error) { setMessage('#folder-message', error.message); }
-  finally { button.disabled = false; folderInput.disabled = false; }
+  finally {
+    button.disabled = false;
+    folderForm.elements.channel.disabled = false;
+    folderForm.elements.artist.disabled = false;
+    for (const radio of sourceRadios) radio.disabled = false;
+    syncSource(false);
+  }
 });
 
 for (const [button, on] of [['#live-on', true], ['#live-off', false]]) {
