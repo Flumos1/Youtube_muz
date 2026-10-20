@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Пульт автора — Flumos Radio</title><link rel="stylesheet" href="/styles.css"><script defer src="/admin.js"></script></head>
+<body><div class="admin-shell">
+  <header class="admin-top"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span><span class="brand-type">FLUMOS <em>RADIO</em></span></a><a href="/">← На радио</a></header>
+  <h1 class="admin-title">Пульт автора.</h1><p class="admin-intro">Здесь вы добавляете музыку, включаете Live и модерируете чат. Доступ есть только у владельца.</p>
+  <section id="login-panel" class="admin-panel" style="max-width:460px;margin-top:35px"><h2>Вход</h2><form id="login-form" class="admin-form"><label>Пароль администратора<input id="password" type="password" autocomplete="current-password" required></label><button type="submit">Войти ↗</button></form><div id="login-message" class="admin-message" role="status"></div></section>
+  <div id="dashboard" class="admin-grid admin-hidden">
+    <section class="admin-panel"><h2>Добавить композицию</h2><p>Для радио нужен MP3. Обложка PNG, JPG или WebP необязательна. Публикуйте только треки, права на которые проверены.</p><form id="track-form" class="admin-form">
+      <label>Название<input name="title" maxlength="100" required></label><label>Исполнитель<input name="artist" value="Flumos" maxlength="80" required></label>
+      <label>Канал<select name="channel"><option value="ambient">Ambient</option><option value="chill">Chill</option><option value="jazz">Jazz Ballads</option></select></label>
+      <label>MP3<input name="audio" type="file" accept=".mp3,audio/mpeg" required></label><label>Обложка<input name="cover" type="file" accept="image/png,image/jpeg,image/webp"></label>
+      <button type="submit">Добавить в эфир ↗</button></form><div id="track-message" class="admin-message" role="status"></div></section>
+    <section class="admin-panel"><h2>Live</h2><p>Начните передачу звука, затем включите статус эфира. При выключении чат закрывается.</p><form id="live-form" class="admin-form">
+      <label>Название эфира<input name="title" maxlength="100" value="Прямой эфир"></label>
+      <label>Ссылка на аудиопоток<input name="streamUrl" type="url" placeholder="https://radio.example.com/live.mp3"></label>
+      <div class="admin-row"><button type="button" id="live-on">Начать Live</button><button type="button" id="live-off" class="admin-button secondary">Завершить Live</button></div></form><div id="live-message-admin" class="admin-message" role="status"></div>
+      <div style="height:28px"></div><h2>Запись эфира</h2><p>После Live загрузите MP3, который хотите оставить в архиве.</p><form id="recording-form" class="admin-form"><label>Название записи<input name="title" maxlength="100" required></label><label>Дата эфира<input name="date" type="date" required></label><label>MP3-запись<input name="audio" type="file" accept=".mp3,audio/mpeg" required></label><button type="submit">Добавить запись ↗</button></form><div id="recording-message" class="admin-message" role="status"></div>
+    </section>
+    <section class="admin-panel wide"><div class="admin-row" style="justify-content:space-between"><h2>Каталог</h2><button id="logout" class="admin-button secondary" type="button">Выйти</button></div><div id="track-list" class="admin-list"></div></section>
+    <section class="admin-panel wide"><h2>Слушатели</h2><p id="metrics-summary">Загружаю показатели…</p></section>
+    <section class="admin-panel wide"><h2>Модерация чата</h2><div id="admin-chat" class="admin-list admin-chat"><p>Чат откроется во время Live.</p></div></section>
+  </div>
+</div></body></html>
